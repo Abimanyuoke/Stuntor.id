@@ -7,7 +7,6 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { FormEvent, useState } from "react"
 import { ToastContainer, toast } from "react-toastify"
-import gambar from "@/public/image/ksaykhao.jpg"
 import { FaGoogle, FaTwitter } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
 
@@ -124,7 +123,8 @@ const LoginPage = () => {
             {/* buat */}
             <div className="absolute right-[130px] -z-10 hidden lg:block">
                 <Image
-                    src={gambar}
+                    src="/image/restaurant.png"
+                    width={400}
                     height={400}
                     alt="gambar" className="w-full min-h-[645px] rounded-r-lg " />
             </div>
