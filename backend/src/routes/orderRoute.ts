@@ -1,7 +1,7 @@
 import express from "express"
-import { getAllOrders, createOrder, updateStatusOrder, deleteOrder } from "../controllers/orderController"
-import { verifyAddOrder, verifyEditStatus } from "../middlewares/orderValidation"
-import { verifyRole, verifyToken } from "../middlewares/authorization"
+import { getAllOrders, createOrder, updateStatusOrder, deleteOrder } from "../controller/orderController"
+import { verifyAddOrder, verifyEditStatus } from "../middleware/orderValidation"
+import { verifyRole, verifyToken } from "../middleware/authorization"
 
 const app = express()
 app.use(express.json())

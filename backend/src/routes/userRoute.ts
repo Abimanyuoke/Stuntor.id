@@ -1,8 +1,8 @@
 import express from "express"
 import { getAllUsers, createUser, updateUser, deleteUser, changePicture, authentication, getUserById } from "../controllers/userController"
-import { verifyAddUser, verifyEditUser, verifyAuthentication } from "../middlewares/userValidation"
-import uploadFile from "../middlewares/profilUpload"
-import { verifyToken, verifyRole } from "../middlewares/authorization"
+import { verifyAddUser, verifyEditUser, verifyAuthentication } from "../middleware/userValidation"
+import uploadFile from "../middleware/profilUpload"
+import { verifyToken, verifyRole } from "../middleware/authorization"
 
 const app = express()
 app.use(express.json())

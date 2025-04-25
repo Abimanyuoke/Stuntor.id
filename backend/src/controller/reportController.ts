@@ -51,7 +51,7 @@ export const getFavourite = async (request: Request, response: Response) => {
         const menuCount: { [key: string]: number } = {};
 
         // Menghitung jumlah pemesanan untuk setiap menu
-        orderLists.forEach(orderList => {
+        orderLists.forEach((orderList: { Menu: { name: any; }; quantity: number; }) => {
             const menuName = orderList.Menu?.name; // Nama menu
             if (menuName) {
                 if (!menuCount[menuName]) {
