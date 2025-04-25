@@ -6,7 +6,7 @@ import MenuItem from "./menuItem"
 import Logo from '../../public/image/restaurant.png'
 import { getCookies, removeCookie } from "../../lib/client-cookies"
 import { useRouter } from "next/navigation";
-import { BASE_IMAGE_PROFILE } from "@/global";
+import { BASE_IMAGE_PROFILE } from "../../global";
 
 type MenuType = {
     id: string,
