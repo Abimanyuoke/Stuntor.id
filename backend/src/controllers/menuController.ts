@@ -83,7 +83,7 @@ export const updateMenu = async (request: Request, response: Response) => {
             let path = `${BASE_URL}/../public/menu_picture/${findMenu.picture}`
             let exists = fs.existsSync(path)
             /** delete the old exists picture if reupload new file */
-            if(exists && findMenu.picture !== ``) fs.unlinkSync(path)
+            if (exists && findMenu.picture !== ``) fs.unlinkSync(path)
         }
 
         /** process to update menu's data */
@@ -117,7 +117,7 @@ export const deleteMenu = async (request: Request, response: Response) => {
     try {
         /** get id of menu's id that sent in parameter of URL */
         const { id } = request.params
-        
+
         /** make sure that data is exists in database */
         const findMenu = await prisma.menu.findFirst({ where: { id: Number(id) } })
         if (!findMenu) return response
@@ -128,7 +128,7 @@ export const deleteMenu = async (request: Request, response: Response) => {
         let path = `${BASE_URL}/../public/menu_picture/${findMenu.picture}`
         let exists = fs.existsSync(path)
         /** delete the old exists picture if reupload new file */
-        if(exists && findMenu.picture !== ``) fs.unlinkSync(path)
+        if (exists && findMenu.picture !== ``) fs.unlinkSync(path)
 
         /** process to delete menu's data */
         const deletedMenu = await prisma.menu.delete({
