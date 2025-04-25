@@ -4,17 +4,16 @@ import swaggerJsDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
 import path from 'path'
 
-import MenuRoute from './routes/menuRoute'
-import UserRoute from './routes/userRoute'
-import OrderRoute from './routes/orderRoute'
-import ReportRoute from './routes/reportRoute'
+import MenuRoute from './routers/menuRoute'
+import UserRoute from './routers/userRoute'
+import OrderRoute from './routers/orderRoute'
+import ReportRoute from './routers/reportRoute'
 
 import { PORT } from './global'
 
 const app = express()
 app.use(cors())
 app.use(express.json())
-app.use('/profile_picture', express.static('public/profile_picture'));
 
 const swaggerOptions = {
     swaggerDefinition: {
@@ -45,7 +44,6 @@ const swaggerOptions = {
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
-
 
 app.use(`/menu`, MenuRoute)
 app.use(`/user`, UserRoute)

@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -19,15 +18,15 @@ enum Category {
   SNACK
 }
 
+enum Payment {
+  CASH
+  QRIS
+}
+
 enum Status {
   NEW
   PAID
   DONE
-}
-
-enum Payment {
-  CASH
-  QRIS
 }
 
 model User {
@@ -71,7 +70,6 @@ model Order {
   userId         Int?
 }
 
-
 model OrderList {
   id        Int      @id @default(autoincrement())
   uuid      String   @unique @default("")
@@ -83,4 +81,4 @@ model OrderList {
   menuId    Int?
   Order     Order?   @relation(fields: [orderId], references: [id])
   orderId   Int?
-} 
+}
