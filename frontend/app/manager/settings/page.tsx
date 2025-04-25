@@ -9,7 +9,7 @@ export default function Settings() {
     const [nama, setNama] = useState("");
     const [email, setEmail] = useState("");
     const [selectedLanguage, setSelectedLanguage] = useState("id");
-    const [gender, setGender] = useState("male");
+    const [gender, setGender] = useState("");
     const [address, setAddress] = useState("");
     const [notificationsEnabled, setNotificationsEnabled] = useState(true);
 
@@ -82,7 +82,7 @@ export default function Settings() {
                     {/* Gender */}
                     <div className="mb-4">
                         <label className="block text-gray-300 font-medium mb-1">Jenis Kelamin:</label>
-                        <select value={gender} onChange={(e) => setGender(e.target.value)} className="w-full bg-slate-700 border border-slate-600 rounded px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500">
+                        <select value={gender} onChange={(e) => setGender(e.target.value)} className="w-full bg-slate-700 border border-slate-600 rounded px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500" onSelect={(e) => console.log('Selected:', e.currentTarget.value)}>
                             <option value="male">Laki-laki</option>
                             <option value="female">Perempuan</option>
                         </select>

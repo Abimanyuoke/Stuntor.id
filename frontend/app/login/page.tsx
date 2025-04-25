@@ -18,12 +18,23 @@ const LoginPage = () => {
 
     const router = useRouter()
 
+    // interface LoginResponses {
+    //     status: boolean;
+    //     message: string;
+    //     token: string;
+    //     data?: {
+    //         id: string;
+    //         name: string;
+    //         role: string;
+    //     }
+    // }
+
     const handleSubmit = async (e: FormEvent) => {
         try {
             e.preventDefault()
             const url = `${BASE_API_URL}/user/login`
             const payload = JSON.stringify({ email: email, password })
-            const { data } = await axios.post(url, payload, {
+            const { data } = await axios.post<{ status: boolean; message: string; token: string; data?: { id: string; name: string; role: string; profile_picture?: string } }>(url, payload, {
                 headers: { "Content-Type": "application/json" }
             })
             if (data.status == true) {
@@ -33,7 +44,7 @@ const LoginPage = () => {
                     storeCookie("id", data.data.id)
                     storeCookie("name", data.data.name)
                     storeCookie("role", data.data.role)
-                    storeCookie("profile_picture", data.data.profile_picture)
+                    storeCookie("profile_picture", data.data.profile_picture || "")
                     let role = data.data.role
                     if (role === `MANAGER`) setTimeout(() => router.replace(`/manager/dashboard`), 1000)
                     else if (role === `CASHIER`) setTimeout(() => router.replace(`/cashier/dashboard`), 1000)
