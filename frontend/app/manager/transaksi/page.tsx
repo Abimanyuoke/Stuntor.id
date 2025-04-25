@@ -1,4 +1,4 @@
-import { IOrder } from "@/app/types";
+import { IOrder } from "../../../app/types";
 import { getCookies } from "../../../lib/server-cookies";
 import { BASE_API_URL } from "@/global";
 import { get } from "../../../lib/bridge";
@@ -13,9 +13,9 @@ const getOrder = async (search: string): Promise<IOrder[]> => {
   try {
     const TOKEN = getCookies("token")
     const url = `${BASE_API_URL}/order?search=${search}`
-    const { data } = await get(url, await TOKEN)
+    const response = await get(url, await TOKEN) as { data: { status: boolean, data: IOrder[] } }
     let result: IOrder[] = []
-    if (data?.status) result = [...data.data]
+    if (response.data?.status) result = [...response.data.data]
     return result
   } catch (error) {
     console.log(error)

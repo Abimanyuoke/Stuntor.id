@@ -1,4 +1,4 @@
-import { IMenu } from "@/app/types";
+import { IMenu } from "../../../app/types";
 import { getCookies } from "../../../lib/server-cookies";
 import { BASE_API_URL, BASE_IMAGE_MENU } from "@/global";
 import { get } from "../../../lib/bridge";
@@ -13,9 +13,9 @@ const getMenu = async (search: string): Promise<IMenu[]> => {
   try {
     const TOKEN = getCookies("token")
     const url = `${BASE_API_URL}/menu?search=${search}`
-    const { data } = await get(url, await TOKEN)
+    const response = await get(url, await TOKEN) as { status: boolean; data: IMenu[] }
     let result: IMenu[] = []
-    if (data?.status) result = [...data.data]
+    if (response.status) result = [...response.data]
     return result
   } catch (error) {
     console.log(error)

@@ -1,5 +1,5 @@
 import ManagerTemplate from "@/components/managerTemplate"
-import MenuList from "../../menuList"
+import MenuList from "../../../app/menuList"
 
 export const metadata = {
     title: 'Profil | Ordering System',
