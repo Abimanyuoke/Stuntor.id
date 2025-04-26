@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Fitur() {
     return (
-        <div className="relative bg-white py-24 font-inter">
+        <div className="relative bg-white py-24 font-inter px-4">
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-[#333333] text-6xl font-extrabold w-[500px]">Fitur Yang Kami Sediakan</h1>
                 <div className="flex flex-col gap-32 mt-24">
@@ -24,7 +24,7 @@ export default function Fitur() {
                         <p className="text-xl font-normal w-[519px]">Menyediakan artikel dan video edukasi tentang masalah stunting. Artikel dan video ini juga bertujuan untuk memberikan pengetahuan yang lebih luas tentang faktor-faktor risiko yang terkait dengan stunting, serta strategi dan langkah-langkah konkret yang dapat diambil oleh orang tua,  </p>
                     </div>
                     <div className="flex flex-col gap-5 justify-start text-start">
-                        <h1 className="text-primary text-4xl font-extrabold">Chat Ai</h1>
+                        <h1 className="text-primary text-4xl font-extrabold">Chat AI</h1>
                         <p className="text-xl font-normal w-[519px]">Kami menyediakan fitur chat dengan dokter dan AI. Jika Anda memiliki pertanyaan umum, AI akan menjawabnya. Namun, jika pertanyaannya sudah serius atau bersifat medis, dokter yang akan menjawabnya.</p>
                     </div>
                 </div>
