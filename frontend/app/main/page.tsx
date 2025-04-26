@@ -2,7 +2,9 @@ import React from 'react'
 
 const Main = () => {
     return (
-        <div>page</div>
+        <div className='overflow-x-hidden overflow-y-auto'>
+            
+        </div>
     )
 }
 

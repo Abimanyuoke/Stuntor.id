@@ -1,3 +1,5 @@
+import Footer from "@/components/footer"
+import Navbar from "@/components/navbar"
 import React from "react"
 
 export const metadata = {
@@ -11,7 +13,11 @@ type PropsLayout = {
 
 const RootLayout = ({ children }: PropsLayout) => {
     return (
-        <div>{children}</div>
+        <div>
+            <Navbar/>
+            {children}
+            <Footer/>
+        </div>
     )
 }
 
