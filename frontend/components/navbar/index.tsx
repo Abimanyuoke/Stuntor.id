@@ -14,8 +14,8 @@ export default function Navbar() {
     }
 
     return (
-        <nav className="bg-white shadow-md fixed w-full top-0 z-50 font-inter">
-            <div className="max-w-7xl mx-auto px-4">
+        <nav className="bg-white shadow-md sticky w-full top-0 z-50 font-inter px-4">
+            <div className="max-w-7xl mx-auto">
                 <div className="flex p-5 justify-between">
                     <Image
                         src="./Logo.svg"

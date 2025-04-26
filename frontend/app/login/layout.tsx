@@ -1,3 +1,4 @@
+import NavbarLogin from "@/components/navbarLogin"
 import React from "react"
 
 export const metadata = {
@@ -11,7 +12,10 @@ type PropsLayout = {
 
 const RootLayout = ({ children }: PropsLayout) => {
     return (
-        <div>{children}</div>
+        <div>
+            <NavbarLogin/>
+            {children}
+        </div>
     )
 }
 
