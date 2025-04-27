@@ -3,7 +3,6 @@
 import { ReactNode, useState } from "react"
 import Image from "next/image"
 import MenuItem from "./menuItem"
-import Logo from '../../public/image/restaurant.png'
 import { getCookies, removeCookie } from "../../lib/client-cookies"
 import { useRouter } from "next/navigation";
 import { BASE_IMAGE_PROFILE } from "../../global";
@@ -88,7 +87,6 @@ const Sidebar = ({ children, id, title, menuList }: ManagerProp) => {
                 {/* logo section */}
                 <div className="mb-3 w-full flex justify-center">
                     <div className="flex items-center space-x-2">
-                        <Image src={Logo} alt="Logo" width={40} height={40} />
                         <h1 className="text-2xl font-bold text-orange-500">Fooder</h1>
                     </div>
                 </div>

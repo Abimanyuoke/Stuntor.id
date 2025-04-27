@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Fitur() {
     return (
-        <div className="relative bg-white py-24 font-inter px-4">
+        <div className="relative bg-white py-24 font-inter px-4" id="fitur">
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-[#333333] text-6xl font-extrabold w-[500px]">Fitur Yang Kami Sediakan</h1>
                 <div className="flex flex-col gap-32 mt-24">

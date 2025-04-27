@@ -24,8 +24,8 @@ export default function Navbar() {
                         height={150}/>
                     <div className="hidden md:flex">
                         <div className="hidden md:flex items-center space-x-8 font-bold text-lg text-[#333333] ">
-                            <a href="/about" className="hover:text-primary transition-all duration-300">Tentang Kami</a>
-                            <a href="fitur" className="hover:text-primary transition-all duration-300">Fitur</a>
+                            <a href="#about" className="hover:text-primary transition-all duration-300">Tentang Kami</a>
+                            <a href="#fitur" className="hover:text-primary transition-all duration-300">Fitur</a>
                             <div className="md:border-2 h-10 mr-4">{''}</div>
                         </div>
                         <div className="hidden md:flex space-x-5 font-bold">

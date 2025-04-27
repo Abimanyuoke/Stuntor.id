@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Home() {
     return (
-        <div className="relative py-24 bg-white px-4">
+        <div className="relative py-36 bg-white px-4">
             <div className="max-w-7xl mx-auto font-inter flex justify-between">
                 <div className="flex flex-col lg:w-1/2 p-5 justify-center lg:p-0 items-start gap-4">
                     <h1 className="text-4xl md:text-6xl font-extrabold text-[#333333] leading-tight">Ayo Cegah <span className="text-primary">Stunting Pada Anak - anak</span></h1>

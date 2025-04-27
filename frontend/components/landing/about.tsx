@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function About() {
     return (
-        <div className="relative bg-[#333333] py-24 px-4 font-inter text-white">
+        <div className="relative bg-[#333333] py-24 px-4 font-inter text-white" id="about">
             <div className="max-w-7xl mx-auto">
                 <div className="flex justify-start px-5 lg:px-0 items-center space-x-20">
                     <Image

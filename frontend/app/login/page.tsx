@@ -6,6 +6,7 @@ import axios from "axios"
 import { useRouter } from "next/navigation"
 import { FormEvent, useState } from "react"
 import { ToastContainer, toast } from "react-toastify"
+import Link from "next/link"
 
 const LoginPage = () => {
     const [email, setEmail] = useState<string>("")
@@ -41,18 +42,23 @@ const LoginPage = () => {
     }
 
     return (
-        <div className="w-screen h-screen bg-slate-900 bg-cover flex justify-center items-center relative z-10">
+        <div className="w-screen h-screen bg-slate-900 bg-cover">
             <ToastContainer containerId={`toastLogin`} />
             <div className="max-w-7xl lg:w-full h-full flex mx-auto justify-between items-center">
                 <div className="flex flex-col lg:w-1/2 p-5 justify-center lg:p-0 items-start gap-4">
                     <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight">Ayo Cegah <span className="text-[#62C44A]">Stunting Pada Anak - anak</span></h1>
                     <p className="text-start text-white">Masalah stunting pada balita masih cukup hangat diperbincangkan dan masih banyak orang tua tidak menegerti cara pencegahannya. Oleh karena itu, kami menawarkan kepada Ibu - Ibu yang mempunyai balita untuk bekerja sama dalam mengatasi masalah stunting pada balita. Produk yang kami buat adalah sebuah produk untuk Pencegahan, Pengedukasian, dan Monitoring masalah stunting.</p>
                 </div>
-                <div className="w-full md:w-6/12 lg:w-1/3 rounded-lg p-5 bg-white flex flex-col items-center relative">
-                <div>
-
-                </div>
-                    <form onSubmit={handleSubmit} className="w-full my-10">
+                <div className="w-full lg:w-1/3 rounded-lg p-5 bg-white flex flex-col items-center relative">
+                    <div className="flex space-x-5">
+                        <div className="bg-primary text-white flex justify-center items-center rounded-md py-3 px-12">
+                            <Link className="font-semibold text-xl" href={"/login"}>Masuk</Link>
+                        </div>
+                        <div className="bg-white border border-primary text-primary flex justify-center items-center rounded-md px-12">
+                            <Link className="font-semibold text-xl" href={"signup"}>Sign Up</Link>
+                        </div>
+                    </div>
+                    <form onSubmit={handleSubmit} className="w-full my-6">
                         <div className="flex w-full my-4">
                             <div className="bg-primary rounded-l-md p-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
