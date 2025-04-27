@@ -44,7 +44,8 @@ const AddUser = () => {
             payload.append("password", password || "")
             payload.append("role", role || "")
             if (file !== null) payload.append("profile_picture", file || "")
-            const { data } = await post(url, payload, TOKEN)
+            const response = await post(url, payload, TOKEN);
+            const data = response as { status: boolean; message: string };
             if (data?.status) {
                 setIsShow(false)
                 toast(data?.message, { hideProgressBar: true, containerId: `toastUser`, type: `success` })

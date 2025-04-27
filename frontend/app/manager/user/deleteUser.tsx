@@ -23,7 +23,8 @@ const DeleteUser = ({ selectedUser }: { selectedUser: IUser }) => {
         try {
             e.preventDefault()
             const url = `${BASE_API_URL}/user/${selectedUser.id}`
-            const { data } = await drop(url, TOKEN)
+            const response= await drop(url, TOKEN)
+            const data = response as { status: boolean; message: string };
             if (data?.status) {
                 setIsShow(false)
                 toast(data?.message, { hideProgressBar: true, containerId: `toastMenu`, type: `success` })

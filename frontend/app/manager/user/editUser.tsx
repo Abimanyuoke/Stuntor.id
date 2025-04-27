@@ -36,7 +36,8 @@ const EditUser = ({ selectedUser }: { selectedUser: IUser }) => {
             payload.append("password", password || "")
             payload.append("role", role || "")
             if (file !== null) payload.append("picture", file || "")
-            const { data } = await put(url, payload, TOKEN)
+            const response = await put(url, payload, TOKEN);
+            const data = response as { status: boolean; message: string };
             if (data?.status) {
                 setIsShow(false)
                 toast(data?.message, { hideProgressBar: true, containerId: `toastUser`, type: `success`, autoClose: 2000 })

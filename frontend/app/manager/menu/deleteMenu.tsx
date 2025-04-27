@@ -23,7 +23,8 @@ const DeleteMenu = ({ selectedMenu }: { selectedMenu: IMenu }) => {
         try {
             e.preventDefault()
             const url = `${BASE_API_URL}/menu/${selectedMenu.id}`
-            const { data } = await drop(url, TOKEN)
+            const response = await drop(url, TOKEN);
+            const data = response as { status: boolean; message: string };
             if (data?.status) {
                 setIsShow(false)
                 toast(data?.message, { hideProgressBar: true, containerId: `toastMenu`, type: `success` })

@@ -44,7 +44,8 @@ const AddMenu = () => {
             payload.append("category", category || "")
             payload.append("description", description || "")
             if (file !== null) payload.append("picture", file || "")
-            const { data } = await post(url, payload, TOKEN)
+            const response = await post(url, payload, TOKEN);
+            const data = response as { status: boolean; message: string };
             if (data?.status) {
                 setIsShow(false)
                 toast(data?.message, { hideProgressBar: true, containerId: `toastMenu`, type: `success` })

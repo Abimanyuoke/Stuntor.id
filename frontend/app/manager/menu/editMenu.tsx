@@ -36,7 +36,8 @@ const EditMenu = ({ selectedMenu }: { selectedMenu: IMenu }) => {
             payload.append("description", description || "")
             payload.append("category", category || "")
             if (file !== null) payload.append("picture", file || "")
-            const { data } = await put(url, payload, TOKEN)
+            const response = await put(url, payload, TOKEN);
+            const data: { status: boolean; message: string } = response.data as { status: boolean; message: string };
             if (data?.status) {
                 setIsShow(false)
                 toast(data?.message, { hideProgressBar: true, containerId: `toastMenu`, type: `success` })
