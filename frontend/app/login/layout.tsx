@@ -1,3 +1,4 @@
+import FooterLogin from "@/components/footerLogin"
 import NavbarLogin from "@/components/navbarLogin"
 import React from "react"
 
@@ -15,6 +16,7 @@ const RootLayout = ({ children }: PropsLayout) => {
         <div>
             <NavbarLogin/>
             {children}
+            <FooterLogin/>
         </div>
     )
 }
