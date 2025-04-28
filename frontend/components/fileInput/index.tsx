@@ -17,7 +17,6 @@ type Props = {
 
 const FileInput = (props: Props) => {
     const [message, setMessage] = useState("")
-    const limitSize = props.maxSize || 2048
     const acceptTypes = props.acceptTypes.join()
     const handleFileInput = (event: React.ChangeEvent, callback: (data: File | null) => void): void => {
         const target = event.target as HTMLInputElement
@@ -39,10 +38,10 @@ const FileInput = (props: Props) => {
     }
 
     return (
-        <div className="w-full flex flex-col gap-1 my-2">
+        <div className="w-full gap-1 my-2 mt-3">
             <strong className="text-xs font-bold text-slate-500">{props.label}</strong>
             <input type={`file`}
-                className={`text-sm w-full rounded-md p-2 bg-slate-50 border border-white focus:border-slate-500 focus:outline-none ${props.className}`}
+                className={`text-sm w-full rounded-md p-2 bg-slate-50 border border-slate-500 focus:border-slate-500 focus:outline-none ${props.className}`}
                 disabled={props.disabled}
                 required={props.required || false}
                 accept={acceptTypes}

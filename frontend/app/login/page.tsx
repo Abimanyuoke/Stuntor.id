@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation"
 import { FormEvent, useState } from "react"
 import { ToastContainer, toast } from "react-toastify"
 import Link from "next/link"
+import { MdOutlineEmail } from "react-icons/md";
+import { GiPadlock } from "react-icons/gi";
 
 const LoginPage = () => {
     const [email, setEmail] = useState<string>("")
@@ -49,9 +51,9 @@ const LoginPage = () => {
                     <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight">Ayo Cegah <span className="text-[#62C44A]">Stunting Pada Anak - anak</span></h1>
                     <p className="text-start text-white">Masalah stunting pada balita masih cukup hangat diperbincangkan dan masih banyak orang tua tidak menegerti cara pencegahannya. Oleh karena itu, kami menawarkan kepada Ibu - Ibu yang mempunyai balita untuk bekerja sama dalam mengatasi masalah stunting pada balita. Produk yang kami buat adalah sebuah produk untuk Pencegahan, Pengedukasian, dan Monitoring masalah stunting.</p>
                 </div>
-                <div className="w-full lg:w-1/3 rounded-lg p-5 bg-white flex flex-col items-center relative">
+                <div className="w-full lg:w-1/3 h-1/2 rounded-lg p-5 bg-white flex flex-col items-center relative">
                     <div className="flex space-x-5">
-                        <div className="bg-primary text-white flex justify-center items-center rounded-md py-3 px-12">
+                        <div className="bg-primary text-white flex justify-center items-center rounded-md py-1 px-12">
                             <Link className="font-semibold text-xl" href={"/login"}>Masuk</Link>
                         </div>
                         <div className="bg-white border border-primary text-primary flex justify-center items-center rounded-md px-12">
@@ -61,10 +63,7 @@ const LoginPage = () => {
                     <form onSubmit={handleSubmit} className="w-full my-6">
                         <div className="flex w-full my-4">
                             <div className="bg-primary rounded-l-md p-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                                </svg>
-
+                                <MdOutlineEmail className="text-[#333333] text-xl" />
                             </div>
                             <input type="text" className="border p-2 grow rounded-r-md focus:outline-none focus:ring-primary focus:border-primary" value={email}
                                 onChange={e => setEmail(e.target.value)} placeholder="Email" id={email} />
@@ -72,10 +71,7 @@ const LoginPage = () => {
 
                         <div className="flex w-full my-4">
                             <div className="bg-primary rounded-l-md p-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
-                                </svg>
-
+                                <GiPadlock className="text-[#333333] text-xl" />
                             </div>
                             <input type={showPassword ? `text` : `password`} className="border p-2 grow focus:outline-none focus:ring-primary focus:border-primary" value={password}
                                 onChange={e => setPassword(e.target.value)} placeholder="Password" id={`password - industri - app`} />
@@ -93,7 +89,7 @@ const LoginPage = () => {
                         </div>
 
                         <div className="my-10">
-                            <button type="submit" className="bg-primary hover:bg-primary uppercase w-full p-2 rounded-md text-white">
+                            <button type="submit" className="bg-primary hover:bg-primary uppercase w-full py-4 font-semibold rounded-md text-white">
                                 Login
                             </button>
                         </div>
