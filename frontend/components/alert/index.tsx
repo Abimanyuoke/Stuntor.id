@@ -72,3 +72,21 @@
             </section>
         )
     }
+
+
+    export const AlertFile = ({ children, title }: Prop) => {
+        return (
+            <section>
+                <div className="my-2 bg-yellow-200 rounded-md text-yellow-800 px-4 py-2 shadow-md border-l-4 border-yellow-800" role="alert">
+                    <div className=" gap-1">
+                        <div>
+                            <p className="font-bold text-lg">{title}</p>
+                            <div className="text-sm">
+                                {children}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        )
+    }

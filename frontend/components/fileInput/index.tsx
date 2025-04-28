@@ -1,8 +1,6 @@
 "use client"
 import React from "react";
 import { useState } from "react";
-import { AlertWarning } from "../alert";
-
 
 type Props = {
     disabled?: boolean,
@@ -49,9 +47,10 @@ const FileInput = (props: Props) => {
                 onChange={e => handleFileInput(e, props.onChange)} />
             {
                 message !== "" ?
-                    <AlertWarning title="Peringatan">
+                    <div className="my-2">
                         {message}
-                    </AlertWarning> : <></>
+                    </div>
+                    : <></>
             }
         </div>
     )

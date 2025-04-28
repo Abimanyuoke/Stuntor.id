@@ -7,12 +7,10 @@ import { getCookies } from "@/lib/client-cookies"
 import { useRouter } from "next/navigation"
 import { FormEvent, useRef, useState } from "react"
 import { toast, ToastContainer } from "react-toastify"
-import { ButtonPrimary, ButtonSuccess, ButtonDanger } from "@/components/button"
 import { InputGroupComponent } from "@/components/InputComponent"
 import Select from "@/components/select"
 import FileInput from "@/components/fileInput"
 import Link from "next/link"
-import Router from "next/router"
 
 const SignUp = () => {
     const [isShow, setIsShow] = useState<boolean>(false)
@@ -81,7 +79,7 @@ const SignUp = () => {
                         {/* end modal header */}
 
                         {/* modal body */}
-                        <div className="p-5 text-black">
+                        <div className="pt-5 text-black">
                             <InputGroupComponent id={`name`} type="text" value={user.name}
                                 onChange={val => setUser({ ...user, name: val })}
                                 required={true} label="Name" />
