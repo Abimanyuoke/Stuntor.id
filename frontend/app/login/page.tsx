@@ -89,7 +89,7 @@ const LoginPage = () => {
                         </div>
 
                         <div className="my-10">
-                            <button type="submit" className="bg-primary hover:bg-primary uppercase w-full py-4 font-semibold rounded-md text-white">
+                            <button type="submit" className="bg-primary hover:bg-primary uppercase w-full py-4 font-semibold cursor-pointer rounded-md text-white">
                                 Login
                             </button>
                         </div>
