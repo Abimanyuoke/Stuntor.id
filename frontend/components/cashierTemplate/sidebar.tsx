@@ -3,7 +3,6 @@
 import { ReactNode, useState } from "react"
 import Image from "next/image"
 import MenuItem from "./menuItem"
-import Logo from '../../public/image/restaurant.png'
 import { getCookies, removeCookie, } from "@/lib/client-cookies"
 import { useRouter } from "next/navigation";
 import { BASE_IMAGE_PROFILE } from "@/global"
@@ -39,6 +38,7 @@ const Sidebar = ({ children, id, title, menuList }: CahsierProp) => {
         router.replace(`/login`)
     };
 
+
     return (
         <div className="w-full min-h-dvh">
             {/* header section */}
@@ -55,16 +55,18 @@ const Sidebar = ({ children, id, title, menuList }: CahsierProp) => {
                 </div>
 
                 {/* user section */}
-                <div className="text-black p-3 flex flex-col gap-2 items-center">
-                    {/* <img src={`${BASE_IMAGE_PROFILE}/${profilePicture}`} alt="Profile" width={100} height={100} className="rounded-full" /> */}
-                    <div className="text-sm font-semibold">
-                        {userName}
-                    </div>
-                    <div className="bg-black px-2 rounded-lg">
-                        <div className="bg-[linear-gradient(to_right,#DD7DDF,#E1CD86,#BBCB92,#71C2EF,#3BFFFF,#DD7DDF,#E1CD86,#BBCB92,#71C2EF,#3BFFFF)] [background-size:200%] text-transparent text-sm bg-clip-text font-medium">
-                            {role}
+                <div className="text-black p-3 flex gap-2 items-center">
+                    <div className="flex flex-col">
+                        <div className="text-xl font-bold">
+                            {userName}
+                        </div>
+                        <div className="bg-black px-2 rounded-lg">
+                            <div className="bg-[linear-gradient(to_right,#DD7DDF,#E1CD86,#BBCB92,#71C2EF,#3BFFFF,#DD7DDF,#E1CD86,#BBCB92,#71C2EF,#3BFFFF)] [background-size:200%] text-transparent text-xs bg-clip-text font-medium">
+                                {role}
+                            </div>
                         </div>
                     </div>
+                    <img src={`${BASE_IMAGE_PROFILE}/${profilePicture}`} alt="Profile" width={50} height={50} className="rounded-full" />
                 </div>
                 {/* end user section */}
 

@@ -12,7 +12,7 @@ type PropsLayout = {
 
 const RootLayout = ({ children }: PropsLayout) => {
     return (
-        <CashierTemplate title="Program" id="program" menuList={CashierList}>
+        <CashierTemplate title="Program Pemerintah" id="program" menuList={CashierList}>
             {children}
         </CashierTemplate>
     )
