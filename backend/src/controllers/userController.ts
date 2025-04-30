@@ -243,7 +243,8 @@ export const authentication = async (request: Request, response: Response) => {
             id: findUser.id,
             name: findUser.name,
             email: findUser.email,
-            role: findUser.role
+            role: findUser.role,
+            profile_picture: findUser.profile_picture,
         }
 
         /** define payload to generate token */
