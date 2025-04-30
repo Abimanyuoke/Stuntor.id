@@ -30,7 +30,6 @@ const Sidebar = ({ children, id, title, menuList }: CahsierProp) => {
     const profilePicture = getCookies("profile_picture");
     const [isShow, setIsShow] = useState(false)
     const role = getCookies(`role`)
-    const [isDropdownOpen, setisDropdownOpen] = useState(false);
 
     const handleLogout = () => {
         removeCookie("token")
@@ -85,15 +84,6 @@ const Sidebar = ({ children, id, title, menuList }: CahsierProp) => {
                     </button>
                 </div>
                 {/* end close button */}
-
-                {/* logo section */}
-                <div className="mb-3 w-full flex justify-center">
-                    <div className="flex items-center space-x-2">
-                        <Image src={Logo} alt="Logo" width={40} height={40} />
-                        <h1 className="text-2xl font-bold text-orange-500">Fooder</h1>
-                    </div>
-                </div>
-                {/* end logo section */}
 
                 {/* user section */}
                 <div className="w-full mt-10 mb-6 bg-primary text-black p-3 flex gap-2 items-center">
