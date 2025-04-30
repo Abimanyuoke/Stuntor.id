@@ -54,15 +54,20 @@ const Sidebar = ({ children, id, title, menuList }: CahsierProp) => {
                     </h1>
                 </div>
 
-
-                <div className="relative">
-                    <div className="flex items-center space-x-2 text-black">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
-                        </svg>
-                        <button className="font-bold" onClick={handleLogout}>Logout</button>
+                {/* user section */}
+                <div className="text-black p-3 flex flex-col gap-2 items-center">
+                    {/* <img src={`${BASE_IMAGE_PROFILE}/${profilePicture}`} alt="Profile" width={100} height={100} className="rounded-full" /> */}
+                    <div className="text-sm font-semibold">
+                        {userName}
+                    </div>
+                    <div className="bg-black px-2 rounded-lg">
+                        <div className="bg-[linear-gradient(to_right,#DD7DDF,#E1CD86,#BBCB92,#71C2EF,#3BFFFF,#DD7DDF,#E1CD86,#BBCB92,#71C2EF,#3BFFFF)] [background-size:200%] text-transparent text-sm bg-clip-text font-medium">
+                            {role}
+                        </div>
                     </div>
                 </div>
+                {/* end user section */}
+
             </header>
             {/* end header section */}
 
@@ -85,20 +90,6 @@ const Sidebar = ({ children, id, title, menuList }: CahsierProp) => {
                 </div>
                 {/* end close button */}
 
-                {/* user section */}
-                <div className="w-full mt-10 mb-6 bg-primary text-black p-3 flex gap-2 items-center">
-                    <img src={`${BASE_IMAGE_PROFILE}/${profilePicture}`} alt="Profile" width={100} height={100} className="rounded-full" />
-                    <div className="text-sm font-semibold">
-                        {userName}
-                    </div>
-                    <div className="bg-black px-2 py-3 rounded-lg">
-                        <div className="bg-[linear-gradient(to_right,#DD7DDF,#E1CD86,#BBCB92,#71C2EF,#3BFFFF,#DD7DDF,#E1CD86,#BBCB92,#71C2EF,#3BFFFF)] [background-size:200%] text-transparent text-sm bg-clip-text font-medium">
-                            {role}
-                        </div>
-                    </div>
-                </div>
-                {/* end user section */}
-
                 {/* menu section */}
                 <div className="w-full p-2 overflow-y-auto">
                     <div className="px-5">
@@ -111,6 +102,15 @@ const Sidebar = ({ children, id, title, menuList }: CahsierProp) => {
                 </div>
                 {/* menu section */}
 
+                {/* logout */}
+                <div className="relative">
+                    <div className="flex items-center space-x-2 text-black">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
+                        </svg>
+                        <button className="font-bold" onClick={handleLogout}>Logout</button>
+                    </div>
+                </div>
             </div>
             {/* end sidebar section */}
 

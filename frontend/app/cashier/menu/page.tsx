@@ -8,6 +8,11 @@ import Link from "next/link";
 // Match exactly with your Prisma enum
 type MenuCategory = 'FOOD' | 'DRINK' | 'SNACK';
 
+interface MenuResponse {
+    status: boolean;
+    data: IMenu[];
+}
+
 const getMenu = async (search: string, category: string): Promise<IMenu[]> => {
     try {
         const TOKEN = await getCookies("token");
@@ -18,8 +23,9 @@ const getMenu = async (search: string, category: string): Promise<IMenu[]> => {
             url += `&category=${category}`;
         }
         
-        const { data } = await get(url, TOKEN);
-        return data?.status ? [...data.data] : [];
+        const response = await get(url, TOKEN);
+        const data: MenuResponse = response.data as MenuResponse;
+        return data.status ? [...data.data] : [];
     } catch (error) {
         console.error("Error fetching menu:", error);
         return [];

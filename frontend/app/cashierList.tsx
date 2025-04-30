@@ -10,30 +10,103 @@ interface IPropMenu {
 
 let CashierList: IPropMenu[] = [
     {
-        id: `dashboard`,
-        path: `/cashier/dashboard`,
-        label: `Dashboard`,
+        id: `home`,
+        path: `/cashier/home`,
+        label: `Home`,
         icon:
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+            <svg xmlns="http://www.w3.org/2000/svg"
+                width="23"
+                height="23"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#333333"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round">
+                <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z" />
+            </svg>
+
+    },
+    {
+        id: `rekam_medis`,
+        path: `/cashier/rekam_medis`,
+        label: `Rekam Medis`,
+        icon:
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="23"
+                height="23"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#333333"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="8" y1="13" x2="16" y2="13" />
+                <line x1="8" y1="17" x2="14" y2="17" />
+            </svg>
+
+
+    },
+    {
+        id: `program`,
+        path: `/cashier/program`,
+        label: `Program Pemerintah`,
+        icon:
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" width={23} height={23} viewBox="0 0 24 24" strokeWidth={1.5} stroke="#333333" className="size-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
             </svg>
     },
     {
-        id: `menu`,
-        path: `/cashier/menu`,
-        label: `Menu`,
+        id: `toko`,
+        path: `/cashier/toko`,
+        label: `Toko Persediaan`,
         icon:
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+            <svg width="23" height="23" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M4 20V10M20 20V10M4 10C4 10 3 9 3 7.5C3 6 4 4 4 4H20C20 4 21 6 21 7.5C21 9 20 10 20 10M4 10H20M8 20V14H11V20M16 10V4M8 10V4"
+                    stroke="#333333"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
             </svg>
     },
     {
-        id: `order`,
-        path: `/cashier/order`,
-        label: `Order`,
+        id: `edukasi`,
+        path: `/cashier/edukasi`,
+        label: `Edukasi`,
         icon:
-            <svg xmlns="http://www.w3.org/2000/svg"     fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 0 0-1.883 2.542l.857 6a2.25 2.25 0 0 0 2.227 1.932H19.05a2.25 2.25 0 0 0 2.227-1.932l.857-6a2.25 2.25 0 0 0-1.883-2.542m-16.5 0V6A2.25 2.25 0 0 1 6 3.75h3.879a1.5 1.5 0 0 1 1.06.44l2.122 2.12a1.5 1.5 0 0 0 1.06.44H18A2.25 2.25 0 0 1 20.25 9v.776" />
+            <svg
+                width={23}
+                height={23}
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M3 7L12 3L21 7L12 11L3 7Z"
+                    stroke="#333333"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+                <path
+                    d="M21 7V13"
+                    stroke="#333333"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+                <path
+                    d="M6 9.5V13C6 14.1 8.7 15 12 15C15.3 15 18 14.1 18 13V9.5"
+                    stroke="#333333"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
             </svg>
     },
 ]

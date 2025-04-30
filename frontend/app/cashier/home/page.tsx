@@ -4,11 +4,11 @@ import React, { ReactNode } from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 
-const DashboardPage = () => {
+const HomePage = () => {
     return (
         <div>
             
         </div>
     )
 }
-export default DashboardPage
+export default HomePage
