@@ -109,6 +109,42 @@ let CashierList: IPropMenu[] = [
                 />
             </svg>
     },
+    {
+        id: `edukasi`,
+        path: `/cashier/edukasi`,
+        label: `Edukasi`,
+        icon:
+            <svg
+                width={23}
+                height={23}
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M3 7L12 3L21 7L12 11L3 7Z"
+                    stroke="#333333"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+                <path
+                    d="M21 7V13"
+                    stroke="#333333"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+                <path
+                    d="M6 9.5V13C6 14.1 8.7 15 12 15C15.3 15 18 14.1 18 13V9.5"
+                    stroke="#333333"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+            </svg>
+    },
 ]
 
 export default CashierList
+ 
