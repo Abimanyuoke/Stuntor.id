@@ -1,5 +1,5 @@
 import CashierTemplate from "@/components/cashierTemplate"
-import CahsierList from "../../cashierList"
+import CashierList from "../../cashierList"
 
 export const metadata = {
     title: 'Edukasi | Ordering System',
@@ -12,7 +12,7 @@ type PropsLayout = {
 
 const RootLayout = ({ children }: PropsLayout) => {
     return (
-        <CashierTemplate title="Edukasi" id="edukasi" menuList={CahsierList}>
+        <CashierTemplate title="Edukasi" id="edukasi" menuList={CashierList}>
             {children}
         </CashierTemplate>
     )

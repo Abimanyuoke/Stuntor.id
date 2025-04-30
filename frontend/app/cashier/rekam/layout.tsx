@@ -1,5 +1,5 @@
 import CashierTemplate from "@/components/cashierTemplate"
-import CahsierList from "../../cashierList"
+import CashierList from "../../cashierList"
 
 export const metadata = {
     title: 'Rekam Medis | Ordering System',
@@ -12,7 +12,7 @@ type PropsLayout = {
 
 const RootLayout = ({ children }: PropsLayout) => {
     return (
-        <CashierTemplate title="Rekam Medis" id="rekam" menuList={CahsierList}>
+        <CashierTemplate title="Rekam Medis" id="rekam_medis" menuList={CashierList}>
             {children}
         </CashierTemplate>
     )

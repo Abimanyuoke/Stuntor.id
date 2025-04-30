@@ -33,7 +33,7 @@ const LoginPage = () => {
                     storeCookie("profile_picture", data.data.profile_picture || "")
                     let role = data.data.role
                     if (role === `MANAGER`) setTimeout(() => router.replace(`/manager/dashboard`), 1000)
-                    else if (role === `CASHIER`) setTimeout(() => router.replace(`/cashier/dashboard`), 1000)
+                    else if (role === `CASHIER`) setTimeout(() => router.replace(`/cashier/home`), 1000)
                 }
             }
             else toast(data.message, { hideProgressBar: true, containerId: `toastLogin`, type: "warning" })

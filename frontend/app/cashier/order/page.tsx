@@ -10,7 +10,7 @@ import { AlertInfo } from "@/components/alert";
 import Image from "next/image";
 import AddOrder from "./addOrder";
 
-const TranskasiPage = () => {
+const OrderPage = () => {
 
     const searchParams = useSearchParams();
     const search = searchParams.get("search") || "";
@@ -23,7 +23,9 @@ const TranskasiPage = () => {
             const TOKEN = getCookies("token") || "";
             const url = `${BASE_API_URL}/menu?search=${search}`;
             const { data } = await get(url, TOKEN);
-            if (data?.status) setMenu(data.data);
+            if ((data as { status: boolean; data: IMenu[] }).status) {
+                setMenu((data as { status: boolean; data: IMenu[] }).data);
+            }
         } catch (error) {
             console.error("Error fetching menu:", error);
         } finally {
@@ -135,7 +137,7 @@ const TranskasiPage = () => {
     );
 };
 
-export default TranskasiPage;
+export default OrderPage;
 
 
 
