@@ -11,7 +11,7 @@ import { InputGroupComponent } from "@/components/InputComponent"
 import Modal from "@/components/modal"
 import Select from "@/components/select"
 
-const AddOrder = ({ orderLists }: { orderLists: { id: number; qty: number }[] }) => {
+const AddOrder = ({ orderLists }: { orderLists: { id: number; qty: number }[] }) => { 
     const [isShow, setIsShow] = useState<boolean>(false);
     const [order, setOrder] = useState<IOrder>({
         id: 0, uuid: ``, customer: ``, table_number: ``, total_price: 0,
