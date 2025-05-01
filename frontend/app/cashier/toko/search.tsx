@@ -19,7 +19,7 @@ const Search = ({ url, search }: Props) => {
 
     return (
         <input type="text" id="keyword" value={keyword} onChange={e => setKeyword(e.target.value)}
-            className={`text-sm w-full rounded-md p-2 bg-slate-50 border border-secondary focus:border-primary focus:outline-none`}
+            className={`text-sm w-full rounded-md p-2 bg-slate-50 border focus:border-primary focus:outline-none`}
             placeholder="Search" onKeyUp={handleSearch} />
     )
 }

@@ -10,6 +10,7 @@ import { AlertInfo } from "@/components/alert";
 import Image from "next/image";
 import AddOrder from "./addOrder";
 import Search from "./search";
+import { ButtonPrimary } from "@/components/button";
 
 const OrderPage = () => {
 
@@ -75,42 +76,34 @@ const OrderPage = () => {
 
     return (
         <div>
-            <div className="mt-2 bg-slate-900 rounded-lg p-3 border-t-4 border-t-primary shadow-md">
-                <h4 className="text-xl font-bold mb-2 text-white">Menu Data</h4>
+            <div className="mt-2 rounded-lg">
+                <div className="flex flex-col my-10 px-20">
+                    <h4 className="text-xl font-bold text-slate-900">Menu Yang Tersedia</h4>
+                    <p className="mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    {/* Search Bar */}
+                    <div className="flex items-center w-full max-w-md flex-grow">
+                        <Search url={`/cashier/toko`} search={search} />
+                    </div>
+                </div>
                 {loading ? (
                     <p className="text-white">Loading...</p>
                 ) : menu.length === 0 ? (
                     <AlertInfo title="Informasi">No data available</AlertInfo>
                 ) : (
                     <>
-                        {/* Search Bar */}
-                        <div className="flex items-center w-full max-w-md flex-grow">
-                            <Search url={`/cashier/toko`} search={search} />
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-2">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-10">
                             {menu.map((data) => (
-                                <div key={data.id} className="shadow p-4 bg-gray-800 rounded-lg flex flex-col items-center text-center">
-                                    <Image width={80} height={80} src={`${BASE_IMAGE_MENU}/${data.picture}`} className="rounded-sm mb-2" alt="preview" unoptimized />
-                                    <h5 className="text-white font-bold text-lg">{data.name}</h5>
-                                    <p className="text-white text-sm">{data.description}</p>
-                                    <span className="text-primary font-bold">Rp {data.price.toLocaleString()}</span>
-                                    <div className="mt-2">{category(data.category)}</div>
-                                    <div className="flex flex-col items-center mt-3">
-                                        <div className="flex items-center space-x-3">
-                                            <button
-                                                className="bg-red-500 px-3 py-1 rounded text-white"
-                                                onClick={() => updateQty(data.id, false)}
-                                                disabled={orderQty[data.id] <= 0}
-                                            >
-                                                -
-                                            </button>
-                                            <span className="text-lg text-white">{orderQty[data.id] || 0}</span>
-                                            <button
-                                                className="bg-green-500 px-3 py-1 rounded text-white"
-                                                onClick={() => updateQty(data.id, true)}
-                                            >
-                                                +
-                                            </button>
+                                <div key={data.id} className="p-4 text-blackl rounded-lg flex flex-col items-center text-center">
+                                    <Image width={300} height={270} src={`${BASE_IMAGE_MENU}/${data.picture}`} className="shadow-2xl" alt="preview" unoptimized />
+                                    <div className="flex flex-col text-white items-center bg-primary rounded-b-md py-5 w-[300px]">
+                                        <h5 className="font-bold text-lg">{data.name}</h5>
+                                        <p className="text-sm">{data.description}</p>
+                                        <span className="font-bold">Rp {data.price.toLocaleString()}</span>
+                                        <div className="mt-2">{category(data.category)}</div>
+                                        <div className="flex flex-col items-center mt-3">
+                                            <ButtonPrimary type={"button" }>
+                                                Tambahkan Keranjang
+                                            </ButtonPrimary>
                                         </div>
                                     </div>
                                 </div>
@@ -143,3 +136,23 @@ const OrderPage = () => {
 };
 
 export default OrderPage;
+
+
+
+
+// <div className="flex items-center space-x-3">
+// <button
+//     className="bg-red-500 px-3 py-1 rounded text-white"
+//     onClick={() => updateQty(data.id, false)}
+//     disabled={orderQty[data.id] <= 0}
+// >
+//     -
+// </button>
+// <span className="text-lg text-white">{orderQty[data.id] || 0}</span>
+// <button
+//     className="bg-green-500 px-3 py-1 rounded text-white"
+//     onClick={() => updateQty(data.id, true)}
+// >
+//     +
+// </button>
+// </div>
