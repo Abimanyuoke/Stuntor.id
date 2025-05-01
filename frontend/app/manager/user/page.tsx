@@ -9,13 +9,19 @@ import AddUser from "./addUser";
 import EditUser from "./editUser";
 import DeleteUser from "./deleteUser";
 
+interface ApiResponse {
+    status: boolean;
+    data: IUser[];
+}
+
 const getUser = async (search: string): Promise<IUser[]> => {
     try {
         const TOKEN = getCookies("token")
         const url = `${BASE_API_URL}/user?search=${search}`
-        const { data } = await get(url, await TOKEN)
+        const response = await get(url, await TOKEN);
+        const data = response.data as ApiResponse;
         let result: IUser[] = []
-        if (data?.status) result = [...data.data]
+        if (data.status) result = [...data.data]
         return result
     } catch (error) {
         console.log(error)

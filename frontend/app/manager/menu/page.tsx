@@ -9,20 +9,25 @@ import AddMenu from "./addMenu";
 import EditMenu from "./editMenu";
 import DeleteMenu from "./deleteMenu";
 
-const getMenu = async (search: string): Promise<IMenu[]> => {
-  try {
-    const TOKEN = getCookies("token")
-    const url = `${BASE_API_URL}/menu?search=${search}`
-    const response = await get(url, await TOKEN) as { status: boolean; data: IMenu[] }
-    let result: IMenu[] = []
-    if (response.status) result = [...response.data]
-    return result
-  } catch (error) {
-    console.log(error)
-    return []
-  }
+interface ApiResponse {
+    status: boolean;
+    data: IMenu[];
 }
 
+const getMenu = async (search: string): Promise<IMenu[]> => {
+    try {
+        const TOKEN = getCookies("token")
+        const url = `${BASE_API_URL}/menu?search=${search}`
+        const response = await get(url, await TOKEN);
+        const data = response.data as ApiResponse;
+        let result: IMenu[] = []
+        if (data.status) result = [...data.data]
+        return result
+    } catch (error) {
+        console.log(error)
+        return []
+    }
+}
 const MenuPage = async ({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) => {
   const search = searchParams.search ? searchParams.search.toString() : ``
   const menu: IMenu[] = await getMenu(search)
