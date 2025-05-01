@@ -1,4 +1,5 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
+import { AxiosError } from 'axios';
 import { BASE_API_URL } from "@/global";
 
 const axiosInstance = axios.create({

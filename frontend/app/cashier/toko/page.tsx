@@ -6,11 +6,12 @@ import { IMenu } from "@/app/types";
 import { getCookies } from "../../../lib/client-cookies";
 import { BASE_API_URL, BASE_IMAGE_MENU } from "@/global";
 import { get } from "../../../lib/bridge";
-import { AlertInfo } from "@/components/alert";
+import { AlertToko } from "@/components/alert";
 import Image from "next/image";
 import AddOrder from "./addOrder";
 import Search from "./search";
 import { ButtonPrimary } from "@/components/button";
+import { IoMdClose } from "react-icons/io";
 
 const OrderPage = () => {
 
@@ -19,6 +20,11 @@ const OrderPage = () => {
     const [menu, setMenu] = useState<IMenu[]>([]);
     const [loading, setLoading] = useState(true);
     const [orderQty, setOrderQty] = useState<{ [key: number]: number }>({});
+    const [order, setOrder] = useState(false)
+
+    const handleOrder = () => {
+        setOrder(!order)
+    }
 
     const getMenu = async () => {
         try {
@@ -88,7 +94,7 @@ const OrderPage = () => {
                 {loading ? (
                     <p className="text-white">Loading...</p>
                 ) : menu.length === 0 ? (
-                    <AlertInfo title="Informasi">No data available</AlertInfo>
+                    <AlertToko title="Informasi">No data available</AlertToko>
                 ) : (
                     <>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-10">
@@ -101,7 +107,7 @@ const OrderPage = () => {
                                         <span className="font-bold">Rp {data.price.toLocaleString()}</span>
                                         <div className="mt-2">{category(data.category)}</div>
                                         <div className="flex flex-col items-center mt-3">
-                                            <ButtonPrimary type={"button" }>
+                                            <ButtonPrimary type={"button"} onClick={() => handleOrder()}>
                                                 Tambahkan Keranjang
                                             </ButtonPrimary>
                                         </div>
@@ -109,6 +115,19 @@ const OrderPage = () => {
                                 </div>
                             ))}
                         </div>
+
+                        {order && (
+                            <div className="fixed bg-black/60 backdrop-blur-sm flex items-center justify-center inset-0 z-99999">
+                                <div className='relative bg-white shadow-lg p-6 rounded-xl w-[90%] max-w-xl'>
+                                    <button onClick={handleOrder} className='absolute top-4 right-4 text-2xl text-black hover:text-primary'>
+                                        <IoMdClose />
+                                    </button>
+                                    <div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        )}
 
                         {selectedOrders.length > 0 && (
                             <div className="mt-6 bg-gray-700 p-4 rounded-lg text-white">

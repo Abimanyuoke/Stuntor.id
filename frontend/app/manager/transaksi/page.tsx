@@ -3,7 +3,6 @@ import { getCookies } from "../../../lib/server-cookies";
 import { BASE_API_URL } from "@/global";
 import { get } from "../../../lib/bridge";
 import { AlertInfo } from "@/components/alert";
-import Image from "next/image"
 import Search from "./search";
 // import AddMenu from "./addMenu";
 // import EditMenu from "./editMenu";
