@@ -38,7 +38,7 @@ export const InputGroupComponent = ({ value, onChange, type, className, id, requ
                         </div> : <div className=""></div>
                 }
                 <input type={type} id={id} value={value} onChange={e => onChange(e.target.value)}
-                    className={`text-sm w-full rounded-r-md p-2 bg-white  focus:outline-none ${className}`}
+                    className={`text-sm w-[200px] text-wrap rounded-r-md p-2 bg-white  focus:outline-none ${className}`}
                     required={required ? required : false} placeholder={placeholder || ""}
                     readOnly={readOnly ? readOnly : false} onKeyUp={e => {
                         if (onKeyUp) onKeyUp(e)

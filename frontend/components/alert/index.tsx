@@ -2,7 +2,8 @@
 
     type Prop = {
         children: ReactNode
-        title: string
+        title: string,
+        className?: string
     }
 
             export const AlertSuccess = ({ children, title }: Prop) => {
@@ -50,10 +51,10 @@
         )
     }
 
-    export const AlertToko = ({ children, title }: Prop) => {
+    export const AlertToko = ({ children, title, className }: Prop) => {
         return (
             <section>
-                <div className="my-2 ml-20 bg-sky-200 rounded-md text-sky-800 px-4 py-3 shadow-md border-l-4 border-sky-800 w-[600px]" role="alert">
+                <div className="my-2 ml-10 bg-sky-200 rounded-md text-sky-800 px-4 py-3 shadow-md border-l-4 border-sky-800 w-[600px]" role="alert">
                     <div className="flex gap-1">
                         <div>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
@@ -61,9 +62,9 @@
                             </svg>
                         </div>
                         <div>
-                            <p className="font-bold text-lg">{title}</p>
+                            <p className={`font-bold text-lg ${className}`}>{title}</p>
                             <div className="text-sm">
-                                {children}
+                                {children}  
                             </div>
                         </div>
                     </div>

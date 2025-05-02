@@ -23,7 +23,7 @@ const Select = ({ value, onChange, className, id, required, children, label }: P
                     </strong> :
                     <></>
             }
-            <select id={id} value={value} onChange={e => onChange(e.target.value)}
+            <select  id={id} value={value} onChange={e => onChange(e.target.value)}
                 required={required || false}
                 className={`w-full rounded-md px-4 py-2 text-sm bg-slate-50 border-slate-500 border focus:outline-none appearance-none ${className}`}>
                 {children}
