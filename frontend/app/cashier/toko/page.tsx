@@ -180,23 +180,26 @@
 
 
 
-// <div className="flex items-center space-x-3">
-// <button
-//     className="bg-red-500 px-3 py-1 rounded text-white"
-//     onClick={() => updateQty(data.id, false)}
-//     disabled={orderQty[data.id] <= 0}
-// >
-//     -
-// </button>
-// <span className="text-lg text-white">{orderQty[data.id] || 0}</span>
-// <button
-//     className="bg-green-500 px-3 py-1 rounded text-white"
-//     onClick={() => updateQty(data.id, true)}
-// >
-//     +
-// </button>
-// </div>
 
+
+// {selectedOrders.length > 0 && (
+//                             <div className="mt-6 bg-gray-700 p-4 rounded-lg text-white">
+//                                 <h4 className="text-lg font-bol d">Transaction Details</h4>
+//                                 <ul className="text-sm">
+//                                     {selectedOrders.map((order) => (
+//                                         <li key={order.id} className="flex justify-between border-b py-1">
+//                                             <span>{order.name} x {order.qty}</span>
+//                                             <span>Rp {(order.qty * order.price).toLocaleString()}</span>
+//                                         </li>
+//                                     ))}
+//                                 </ul>
+//                                 <h4 className="text-lg font-bold mt-3">Total: Rp {totalTransaction.toLocaleString()}</h4>
+
+//                                 <div className="mt-4">
+//                                     <AddOrder orderLists={selectedOrders} />
+//                                 </div>
+//                             </div>
+//                         )} 
 
 "use client";
 
@@ -322,62 +325,53 @@ const OrderPage = () => {
                         {order && (
                             <div className="fixed bg-black/60 backdrop-blur-sm flex items-center justify-center inset-0 z-99999">
                                 <div className="relative bg-white shadow-lg p-6 rounded-xl w-[90%] max-w-xl overflow-y-auto max-h-[90vh]">
-                                    <button onClick={() => setOrder(false)} className="absolute top-4 right-4 text-2xl text-black hover:text-primary">
+                                    <button
+                                        onClick={() => {
+                                            setOrder(false);
+                                            setOrderQty({});
+                                            setSelectedOrderIds([]);
+                                        }}
+                                        className="absolute top-4 right-4 text-2xl text-black hover:text-primary"
+                                    >
                                         <IoMdClose />
                                     </button>
                                     <div>
-                                        {menu
-                                            .filter((item) => selectedOrderIds.includes(item.id))
-                                            .map((data) => (
-                                                <div key={data.id} className="mb-6 border-b pb-4">
-                                                    <Image
-                                                        width={300}
-                                                        height={270}
-                                                        src={`${BASE_IMAGE_MENU}/${data.picture}`}
-                                                        className="shadow-2xl rounded-lg"
-                                                        alt="preview"
-                                                        unoptimized
-                                                    />
-                                                    <h5 className="font-bold text-lg mt-2">{data.name}</h5>
-                                                    <p className="text-sm">{data.description}</p>
-                                                    <span className="font-bold block mt-1">Rp {data.price.toLocaleString()}</span>
-                                                    <div className="flex items-center gap-3 mt-2">
+                                        {menu.filter((item) => selectedOrderIds.includes(item.id)).map((data) => (
+                                            <div key={data.id} className="mb-6 border-b pb-4">
+                                                <Image
+                                                    width={300}
+                                                    height={270}
+                                                    src={`${BASE_IMAGE_MENU}/${data.picture}`}
+                                                    className="shadow-2xl rounded-lg"
+                                                    alt="preview"
+                                                    unoptimized
+                                                />
+                                                <div className="flex justify-between">
+                                                    <div className="flex flex-col py-5">
+                                                        <h5 className="font-bold text-lg mt-2">{data.name}</h5>
+                                                        <p className="text-sm">{data.description}</p>
+                                                        <span className="font-bold block mt-1">Rp {data.price.toLocaleString()}</span>
+                                                    </div>
+                                                    <div className="flex items-center space-x-3">
                                                         <button
-                                                            className="bg-red-500 text-white px-2 py-1 rounded"
+                                                            className="bg-red-500 px-2 py-1 rounded-md text-white"
                                                             onClick={() => updateQty(data.id, false)}
+                                                            disabled={orderQty[data.id] <= 0}
                                                         >
                                                             -
                                                         </button>
-                                                        <span>{orderQty[data.id] || 0}</span>
+                                                        <span className="text-lg text-primary">{orderQty[data.id] || 0}</span>
                                                         <button
-                                                            className="bg-green-500 text-white px-2 py-1 rounded"
+                                                            className="bg-green-500 px-2 py-1 rounded-md text-white"
                                                             onClick={() => updateQty(data.id, true)}
                                                         >
                                                             +
                                                         </button>
                                                     </div>
                                                 </div>
-                                            ))}
+                                            </div>
+                                        ))}
                                     </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {selectedOrders.length > 0 && (
-                            <div className="mt-6 bg-gray-700 p-4 rounded-lg text-white">
-                                <h4 className="text-lg font-bold">Transaction Details</h4>
-                                <ul className="text-sm">
-                                    {selectedOrders.map((order) => (
-                                        <li key={order.id} className="flex justify-between border-b py-1">
-                                            <span>{order.name} x {order.qty}</span>
-                                            <span>Rp {(order.qty * order.price).toLocaleString()}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                                <h4 className="text-lg font-bold mt-3">Total: Rp {totalTransaction.toLocaleString()}</h4>
-
-                                <div className="mt-4">
-                                    <AddOrder orderLists={selectedOrders} />
                                 </div>
                             </div>
                         )}
@@ -389,3 +383,4 @@ const OrderPage = () => {
 };
 
 export default OrderPage;
+
