@@ -6,6 +6,8 @@ import MenuItem from "./menuItem"
 import { getCookies, removeCookie, } from "@/lib/client-cookies"
 import { useRouter } from "next/navigation";
 import { BASE_IMAGE_PROFILE } from "@/global"
+import Link from "next/link"
+import { IoChatbubbleEllipsesSharp } from "react-icons/io5"
 
 
 type MenuType = {
@@ -74,10 +76,17 @@ const Sidebar = ({ children, id, title, menuList }: CahsierProp) => {
             {/* end header section */}
 
             {/* content section */}
-            <div>
+            <div className="relative">
                 {children}
             </div>
             {/* end content section */}
+
+            {/* Chatbot */}
+            <Link href="/chat">
+                <div className="fixed bottom-6 right-6 bg-slate-900 text-white p-4 rounded-full shadow-lg hover:bg-gray-700 transition">
+                    <IoChatbubbleEllipsesSharp className="w-5 h-5" />
+                </div>
+            </Link>
 
             {/* sidebar section */}
             <div className={`flex flex-col w-2/3 md:w-1/2 lg:w-1/4 h-full p-5 fixed top-0 right-full transition-transform z-50bg-white border-r border-primary bg-white ${isShow ? `translate-x-full` : ``}`}>
