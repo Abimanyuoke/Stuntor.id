@@ -11,10 +11,11 @@ import Image from "next/image";
 import Search from "./search";
 import { ButtonPrimary, ButtonDanger } from "@/components/button";
 import { IoMdClose } from "react-icons/io";
-import { FiShoppingCart } from "react-icons/fi";
+import { TiShoppingCart } from "react-icons/ti";
 import { toast, ToastContainer } from "react-toastify";
 import { InputGroupComponent, TextGroupComponent } from "@/components/InputComponent";
 import CardSelect from "@/components/card";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 const OrderPage = () => {
     const searchParams = useSearchParams();
@@ -181,7 +182,7 @@ const OrderPage = () => {
             <ToastContainer containerId="toastOrder" />
             <div className="flex justify-end pr-10 pt-4">
                 <button onClick={() => setOrder(true)} className="relative">
-                    <FiShoppingCart className="text-2xl" />
+                    <TiShoppingCart className="text-2xl" />
                     {selectedOrderIds.length > 0 && (
                         <span className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">{selectedOrderIds.length}</span>
                     )}
@@ -228,7 +229,7 @@ const OrderPage = () => {
                             <form onSubmit={handleSubmit} ref={formRef}>
                                 {selectedOrderIds.length === 0 ? (
                                     <div className="text-center text-gray-500 my-10">
-                                        <button onClick={handleCart} className="text-red-500 text-xl absolute top-5 right-5"><IoMdClose /></button>
+                                        <button onClick={handleCart} className="text-red-500 text-xl absolute top-5 right-5"><IoIosCloseCircleOutline /></button>
                                         <p className="text-lg font-semibold">Keranjang Kosong</p>
                                         <p className="text-sm">Silakan tambahkan menu terlebih dahulu.</p>
                                     </div>

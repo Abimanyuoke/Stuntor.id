@@ -8,7 +8,7 @@ const storage = multer.diskStorage({
         /** define location of uploaded image, make sure that you have create a "public" folder in root folder.
          * then create folder "profil-picture" inside of "public folder"
          */
-        cb(null, `${BASE_URL}/public/profile_picture/`)
+        cb(null, `${BASE_URL}/public/video/`)
     },
     filename: (request: Request, file: Express.Multer.File, cb: (error: Error | null, destination: string) => void) => {
         /** define file name of uploaded file */
@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 
 const uploadFile = multer({
     storage,
-    limits: { fileSize: 2 * 1024 * 1024 } /** define max size of uploaded file, in this case max size is 2 MB */
+    limits: { fileSize: 5 * 2000 * 2000 } /** define max size of uploaded file, in this case max size is 2 MB */
 })
 
 export default uploadFile

@@ -43,7 +43,7 @@ export const createVideo = async (request: Request, response: Response) => {
 
         /** process to save new menu, price and stock have to convert in number type */
         const newVideo = await prisma.video.create({
-            data: { uuid, name, description, picture: filename }
+            data: { uuid, name, description, video: filename }
         })
 
         return response.json({
@@ -75,30 +75,30 @@ export const updateVideo = async (request: Request, response: Response) => {
             .json({ status: false, message: `Video is not found` })
 
         /** default value filename of saved data */
-        let filename = findVideo.picture
+        let filename = findVideo.video
         if (request.file) {
-            /** update filename by new uploaded picture */
+            /** update filename by new uploaded video */
             filename = request.file.filename
-            /** check the old picture in the folder */
-            let path = `${BASE_URL}/../public/video/${findVideo.picture}`
+            /** check the old video in the folder */
+            let path = `${BASE_URL}/../public/video/${findVideo.video}`
             let exists = fs.existsSync(path)
-            /** delete the old exists picture if reupload new file */
-            if (exists && findVideo.picture !== ``) fs.unlinkSync(path)
+            /** delete the old exists video if reupload new file */
+            if (exists && findVideo.video !== ``) fs.unlinkSync(path)
         }
 
         /** process to update menu's data */
-        const updatedMenu = await prisma.menu.update({
+        const updatedVideo = await prisma.video.update({
             data: {
                 name: name || findVideo.name,
                 description: description || findVideo.description,
-                picture: filename
+                video: filename
             },
             where: { id: Number(id) }
         })
 
         return response.json({
             status: true,
-            data: updatedMenu,
+            data: updatedVideo,
             message: `Video has updated`
         }).status(200)
     } catch (error) {
@@ -122,11 +122,11 @@ export const deleteVideo = async (request: Request, response: Response) => {
             .status(200)
             .json({ status: false, message: `Video is not found` })
 
-        /** check the old picture in the folder */
-        let path = `${BASE_URL}/../public/video/${findVideo.picture}`
+        /** check the old video in the folder */
+        let path = `${BASE_URL}/../public/video/${findVideo.video}`
         let exists = fs.existsSync(path)
-        /** delete the old exists picture if reupload new file */
-        if (exists && findVideo.picture !== ``) fs.unlinkSync(path)
+        /** delete the old exists video if reupload new file */
+        if (exists && findVideo.video !== ``) fs.unlinkSync(path)
 
         /** process to delete video's data */
         const deletedVideo = await prisma.video.delete({
