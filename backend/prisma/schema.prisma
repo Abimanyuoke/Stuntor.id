@@ -82,3 +82,15 @@ model OrderList {
   Order     Order?   @relation(fields: [orderId], references: [id])
   orderId   Int?
 }
+
+model Video {
+  id Int @id @default(autoincrement())
+  uuid String @unique @default("")
+  name String @default("")
+  description String @default("") @db.Text
+  video String @default("")
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+
+}

@@ -8,6 +8,7 @@ import MenuRoute from './routers/menuRoute'
 import UserRoute from './routers/userRoute'
 import OrderRoute from './routers/orderRoute'
 import ReportRoute from './routers/reportRoute'
+import VideoRoute from './routers/reportRoute'
 
 import { PORT } from './global'
 
@@ -49,6 +50,7 @@ app.use(`/menu`, MenuRoute)
 app.use(`/user`, UserRoute)
 app.use(`/order`, OrderRoute)
 app.use(`/report`, ReportRoute)
+app.use(`/video`, VideoRoute)
 
 // Set public folder as static
 app.use(express.static(path.join(__dirname, '..', 'public')));
