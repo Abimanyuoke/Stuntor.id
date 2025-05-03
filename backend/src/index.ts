@@ -8,7 +8,7 @@ import MenuRoute from './routers/menuRoute'
 import UserRoute from './routers/userRoute'
 import OrderRoute from './routers/orderRoute'
 import ReportRoute from './routers/reportRoute'
-import VideoRoute from './routers/reportRoute'
+import VideoRoute from './routers/videoRoute'
 
 import { PORT } from './global'
 

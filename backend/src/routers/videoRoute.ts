@@ -8,7 +8,7 @@ const app = express()
 app.use(express.json())
 
 app.get(`/`, [verifyToken, verifyRole(["CASHIER", "MANAGER"])], getAllVideo)
-app.post(`/`, [verifyToken, verifyRole(["MANAGER"]), uploadFile.single("video"), verifyAddVideo], createVideo)
+app.post(`/`, [uploadFile.single("video"), verifyAddVideo], createVideo)
 app.put(`/:id`, [verifyToken, verifyRole(["MANAGER"]), uploadFile.single("video"), verifyEditVideo], updateVideo)
 app.delete(`/:id`, [verifyToken, verifyRole(["MANAGER"])], deleteVideo)
 
