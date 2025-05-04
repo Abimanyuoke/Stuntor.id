@@ -59,7 +59,7 @@ const Sidebar = ({ children, id, title, menuList }: CahsierProp) => {
                 {/* user section */}
                 <div className="text-black p-3 flex gap-2 items-center">
                     <div className="flex flex-col">
-                        <div className="text-xl font-bold">
+                        <div className="text-xl text-center font-bold">
                             {userName}
                         </div>
                         <div className="bg-black px-2 rounded-lg">
