@@ -6,65 +6,65 @@ import fs from "fs"
 
 const prisma = new PrismaClient({ errorFormat: "pretty" })
 
-// export const getAllMenus = async (request: Request, response: Response) => {
-//     try {
-//         /** get requested data (data has been sent from request) */
-//         const { search } = request.query
-
-//         /** process to get menu, contains means search name of menu based on sent keyword */
-//         const allMenus = await prisma.menu.findMany({
-//             where: { name: { contains: search?.toString() || "" } }
-//         })
-
-//         return response.json({
-//             status: true,
-//             data: allMenus,
-//             message: `Menus has retrieved`
-//         }).status(200)
-//     } catch (error) {
-//         return response
-//             .json({
-//                 status: false,
-//                 message: `There is an error. ${error}`
-//             })
-//             .status(400)
-//     }
-// }
-
 export const getAllMenus = async (request: Request, response: Response) => {
     try {
-        const { search, category } = request.query;
+        /** get requested data (data has been sent from request) */
+        const { search } = request.query
 
-        const whereClause: any = {};
-
-        if (search) {
-            whereClause.name = {
-                contains: search.toString(),
-                mode: "insensitive"
-            };
-        }
-
-        if (category && category.toString().toUpperCase() !== "ALL") {
-            whereClause.category = category.toString().toUpperCase();
-        }
-
+        /** process to get menu, contains means search name of menu based on sent keyword */
         const allMenus = await prisma.menu.findMany({
-            where: whereClause,
-            orderBy: { createdAt: "desc" }
-        });
+            where: { name: { contains: search?.toString() || "" } }
+        })
 
-        return response.status(200).json({
+        return response.json({
             status: true,
             data: allMenus,
-            message: "Menus have been retrieved"
-        });
+            message: `Menus has retrieved`
+        }).status(200)
     } catch (error) {
-        return response.status(400).json({
-            status: false,
-            message: `There is an error.${error}`
-        });
+        return response
+            .json({
+                status: false,
+                message: `There is an error. ${error}`
+            })
+            .status(400)
     }
-};
+}
+
+// export const getAllMenus = async (request: Request, response: Response) => {
+//     try {
+//         const { search, category } = request.query;
+
+//         const whereClause: any = {};
+
+//         if (search) {
+//             whereClause.name = {
+//                 contains: search.toString(),
+//                 mode: "insensitive"
+//             };
+//         }
+
+//         if (category && category.toString().toUpperCase() !== "ALL") {
+//             whereClause.category = category.toString().toUpperCase();
+//         }
+
+//         const allMenus = await prisma.menu.findMany({
+//             where: whereClause,
+//             orderBy: { createdAt: "desc" }
+//         });
+
+//         return response.status(200).json({
+//             status: true,
+//             data: allMenus,
+//             message: "Menus have been retrieved"
+//         });
+//     } catch (error) {
+//         return response.status(400).json({
+//             status: false,
+//             message: `There is an error.${error}`
+//         });
+//     }
+// };
 
 export const createMenu = async (request: Request, response: Response) => {
     try {

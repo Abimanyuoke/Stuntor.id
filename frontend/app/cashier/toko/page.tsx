@@ -82,6 +82,7 @@ const OrderPage = () => {
             setLoading(false);
         }
     };
+    
 
     useEffect(() => {
         getMenu();
