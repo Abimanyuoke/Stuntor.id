@@ -180,11 +180,13 @@ const OrderPage = () => {
     return (
         <div>
             <ToastContainer containerId="toastOrder" />
-            <div className="flex justify-end pr-10 pt-4">
-                <button onClick={() => setOrder(true)} className="relative">
-                    <TiShoppingCart className="text-2xl" />
+            <div className="sticky top-4 z-50 flex justify-end pr-10 pt-4">
+                <button onClick={() => setOrder(true)}>
+                    <div className="bg-black w-9 h-9 flex items-center justify-center rounded-full relative">
+                        <TiShoppingCart className="text-2xl text-white" />
+                    </div>
                     {selectedOrderIds.length > 0 && (
-                        <span className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">{selectedOrderIds.length}</span>
+                        <span className="absolute top-2 right-8 bg-red-600 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">{selectedOrderIds.length}</span>
                     )}
                 </button>
             </div>
@@ -206,13 +208,13 @@ const OrderPage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center gap-4 my-10">
                         {menu.map((data) => (
                             <div key={data.id} className="p-4 rounded-lg flex flex-col items-center text-center">
-                                <Image width={300} height={270} src={`${BASE_IMAGE_MENU}/${data.picture}`} className="shadow-2xl" alt="preview" unoptimized />
-                                <div className="flex flex-col text-white items-center bg-primary rounded-b-md py-5 w-[300px]">
-                                    <h5 className="font-bold text-lg">{data.name}</h5>
-                                    <p className="text-sm">{data.description}</p>
+                                <Image width={300} height={300} src={`${BASE_IMAGE_MENU}/${data.picture}`} className="shadow-2xl" alt="preview" unoptimized />
+                                <div className="flex flex-col text-white items-center bg-primary rounded-b-md py-5 w-[300px] h-70 relative">
+                                    <h5 className="font-bold text-xl px-4">{data.name}</h5>
+                                    <p className="text-xs">{data.description}</p>
                                     <span className="font-bold">Rp {data.price.toLocaleString()}</span>
-                                    <div className="mt-2">{category(data.category)}</div>
-                                    <div className="flex flex-col items-center mt-3">
+                                    <div className="mt-2 absolute bottom-27">{category(data.category)}</div>
+                                    <div className="flex flex-col absolute bottom-10 mt-3">
                                         <ButtonPrimary type="button" onClick={() => handleAddToCart(data.id)}>
                                             Tambahkan Keranjang
                                         </ButtonPrimary>
