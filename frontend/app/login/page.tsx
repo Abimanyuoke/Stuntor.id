@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify"
 import Link from "next/link"
 import { MdOutlineEmail } from "react-icons/md";
 import { GiPadlock } from "react-icons/gi";
+import { ArrowLeft } from "lucide-react"
 
 const LoginPage = () => {
     const [email, setEmail] = useState<string>("")
@@ -46,6 +47,14 @@ const LoginPage = () => {
     return (
         <div className="w-screen h-screen bg-slate-900 bg-cover">
             <ToastContainer containerId={`toastLogin`} />
+            <div className="mb-2 p-5">
+                <button
+                    onClick={() => router.back()}
+                    className="flex items-center gap-1 text-white hover:text-slate-400">
+                    <ArrowLeft className="w-5 h-5" />
+                    <span>Kembali</span>
+                </button>
+            </div>
             <div className="max-w-7xl lg:w-full h-full flex mx-auto justify-between items-center">
                 <div className="flex flex-col lg:w-1/2 p-5 justify-center lg:p-0 items-start gap-4">
                     <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight">Ayo Cegah <span className="text-[#62C44A]">Stunting Pada Anak - anak</span></h1>

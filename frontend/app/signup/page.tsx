@@ -11,6 +11,7 @@ import { InputGroupComponent } from "@/components/InputComponent"
 import Select from "@/components/select"
 import FileInput from "@/components/fileInput"
 import Link from "next/link"
+import { ArrowLeft } from "lucide-react"
 
 const SignUp = () => {
     const [user, setUser] = useState<IUser>({
@@ -40,7 +41,7 @@ const SignUp = () => {
                 toast.success(data.message, { hideProgressBar: true, containerId: `toastUser` })
                 setTimeout(() => {
                     router.replace(`/login`)
-                }, 1000) 
+                }, 1000)
             } else {
                 toast.warning(data.message, { hideProgressBar: true, containerId: `toastUser` })
             }
@@ -53,6 +54,14 @@ const SignUp = () => {
 
     return (
         <div className="w-screen h-screen bg-slate-900 bg-cover flex justify-center items-center relative z-10">
+            <div className="mb-2 p-5 absolute top-0 left-0">
+                <button
+                    onClick={() => router.replace(`/main`)}
+                    className="flex items-center gap-1 text-white hover:text-slate-400">
+                    <ArrowLeft className="w-5 h-5" />
+                    <span>Kembali</span>
+                </button>
+            </div>
             <ToastContainer containerId={`toastUser`} />
             <div className="max-w-7xl lg:w-full h-full flex mx-auto justify-between items-center">
                 <div className="flex flex-col lg:w-1/2 p-5 justify-center lg:p-0 items-start gap-4">
