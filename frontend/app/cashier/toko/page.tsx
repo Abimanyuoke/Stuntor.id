@@ -8,14 +8,13 @@ import { BASE_API_URL, BASE_IMAGE_MENU } from "@/global";
 import { get } from "@/lib/bridge";
 import { AlertToko } from "@/components/alert";
 import Image from "next/image";
-import Search from "./search";
 import { ButtonPrimary, ButtonDanger } from "@/components/button";
-import { IoMdClose } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
 import { toast, ToastContainer } from "react-toastify";
 import { InputGroupComponent, TextGroupComponent } from "@/components/InputComponent";
 import CardSelect from "@/components/card";
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import { FaTrashAlt } from "react-icons/fa";
 
 const OrderPage = () => {
     const searchParams = useSearchParams();
@@ -28,10 +27,6 @@ const OrderPage = () => {
     const [order, setOrder] = useState(false);
     const [selectedOrderIds, setSelectedOrderIds] = useState<number[]>([]);
 
-    const handleCart = () => {
-        setOrder(!order)
-    }
-
     const [orderForm, setOrderForm] = useState<IOrder>({
         id: 0,
         uuid: "",
@@ -39,14 +34,17 @@ const OrderPage = () => {
         table_number: "",
         total_price: 0,
         payment_method: "",
-        status: "",
+        status: "NEW",
         createdAt: "",
         updatedAt: "",
         userId: 0,
         orderLists: [],
     });
+
     const [orderNote, setOrderNote] = useState<string>("");
     const formRef = useRef<HTMLFormElement>(null);
+
+    const handleCart = () => setOrder(!order);
 
     const resetOrderState = () => {
         setOrderQty({});
@@ -82,7 +80,6 @@ const OrderPage = () => {
             setLoading(false);
         }
     };
-    
 
     useEffect(() => {
         getMenu();
@@ -109,7 +106,15 @@ const OrderPage = () => {
     const updateQty = (id: number, increment: boolean) => {
         setOrderQty((prevQty) => {
             const currentQty = prevQty[id] || 0;
-            const newQty = increment ? currentQty + 1 : Math.max(0, currentQty - 1);
+            const newQty = increment ? currentQty + 1 : currentQty - 1;
+
+            if (newQty <= 0) {
+                setSelectedOrderIds((prev) => prev.filter((itemId) => itemId !== id));
+                const updatedQty = { ...prevQty };
+                delete updatedQty[id];
+                return updatedQty;
+            }
+
             return { ...prevQty, [id]: newQty };
         });
     };
@@ -126,7 +131,7 @@ const OrderPage = () => {
         const userId = Number(getCookies("id"));
 
         if (!userId) {
-            toast("User not found", { hideProgressBar: true, containerId: "toastOrder", type: "error" });
+            toast("User not found", { containerId: "toastOrder", type: "error" });
             return;
         }
 
@@ -159,16 +164,16 @@ const OrderPage = () => {
 
             const data = await response.json();
             if (data.status) {
-                toast(data.message, { hideProgressBar: true, containerId: "toastOrder", type: "success" });
+                toast(data.message, { containerId: "toastOrder", hideProgressBar:true, type: "success" });
                 setTimeout(() => {
                     resetOrderState();
                     router.refresh();
                 });
             } else {
-                toast(data.message, { hideProgressBar: true, containerId: "toastOrder", type: "warning" });
+                toast(data.message, { containerId: "toastOrder", hideProgressBar:true, type: "warning" });
             }
         } catch (error) {
-            toast("Something went wrong", { hideProgressBar: true, containerId: "toastOrder", type: "error" });
+            toast("Something went wrong", { containerId: "toastOrder", hideProgressBar:true, type: "error" });
         }
     };
 
@@ -187,7 +192,9 @@ const OrderPage = () => {
                         <TiShoppingCart className="text-2xl text-white" />
                     </div>
                     {selectedOrderIds.length > 0 && (
-                        <span className="absolute top-2 right-8 bg-red-600 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">{selectedOrderIds.length}</span>
+                        <span className="absolute top-2 right-8 bg-red-600 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
+                            {selectedOrderIds.length}
+                        </span>
                     )}
                 </button>
             </div>
@@ -196,9 +203,6 @@ const OrderPage = () => {
                 <div className="flex flex-col my-10 px-10">
                     <h4 className="text-xl font-bold text-slate-900">Menu Yang Tersedia</h4>
                     <p className="mb-2">Silakan pilih menu yang ingin dipesan.</p>
-                    <div className="flex items-center w-full max-w-md flex-grow">
-                        <Search url={`/cashier/toko`} search={search} />
-                    </div>
                 </div>
 
                 {loading ? (
@@ -228,7 +232,7 @@ const OrderPage = () => {
 
                 {order && (
                     <div className="fixed bg-black/60 backdrop-blur-sm flex items-center justify-center inset-0 z-99999">
-                        <div className="relative bg-white shadow-lg p-6 rounded-xl w-[90%] max-w-xl overflow-y-auto max-h-[90vh]">
+                        <div className="relative bg-white shadow-lg p-6 rounded-xl w-[90%] max-w-8xl overflow-y-auto max-h-[90vh]">
                             <form onSubmit={handleSubmit} ref={formRef}>
                                 {selectedOrderIds.length === 0 ? (
                                     <div className="text-center text-gray-500 my-10">
@@ -236,24 +240,33 @@ const OrderPage = () => {
                                         <p className="text-lg font-semibold">Keranjang Kosong</p>
                                         <p className="text-sm">Silakan tambahkan menu terlebih dahulu.</p>
                                     </div>
-
                                 ) : (
-                                    menu.filter((item) => selectedOrderIds.includes(item.id)).map((data) => (
-                                        <div key={data.id} className="mb-6 border-b pb-4">
-                                            <div className="flex justify-between items-start">
-                                                <Image width={100} height={100} src={`${BASE_IMAGE_MENU}/${data.picture}`} className="rounded-lg" alt="preview" unoptimized />
-                                                <button onClick={(e) => { e.preventDefault(); handleRemoveFromCart(data.id); }} className="text-red-500 text-xl"><IoMdClose /></button>
+                                    menu.filter((item) => selectedOrderIds.includes(item.id)).map((data) => {
+                                        const qty = orderQty[data.id] || 0;
+                                        return (
+                                            <div key={data.id} className="mb-6 border-b pb-4">
+                                                <div className="grid grid-cols-4 text-black font-bold gap-x-67 mb-2">
+                                                    <p>Product</p>
+                                                    <p>Nama</p>
+                                                    <p>Qty</p>
+                                                    <p>Total</p>
+                                                </div>
+                                                <div className="grid grid-cols-4 gap-x-67 items-center">
+                                                    <div className="flex items-center">
+                                                        <button onClick={(e) => { e.preventDefault(); handleRemoveFromCart(data.id); }} className="text-red-500 text-lg mr-10"><FaTrashAlt /></button>
+                                                        <Image width={100} height={100} src={`${BASE_IMAGE_MENU}/${data.picture}`} className="rounded-lg" alt="preview" unoptimized />
+                                                    </div>
+                                                    <h5 className="font-bold text-base mt-2">{data.name}</h5>
+                                                    <div className="flex items-center space-x-3 mt-2">
+                                                        <button className="bg-red-500 px-2 py-1 rounded-md text-white" onClick={(e) => { e.preventDefault(); updateQty(data.id, false); }} disabled={orderQty[data.id] <= 0}>-</button>
+                                                        <span className="text-lg text-primary">{orderQty[data.id] || 0}</span>
+                                                        <button className="bg-green-500 px-2 py-1 rounded-md text-white" onClick={(e) => { e.preventDefault(); updateQty(data.id, true); }}>+</button>
+                                                    </div>
+                                                    <span className="font-bold block mt-1">Rp {(qty * data.price).toLocaleString()}</span>
+                                                </div>
                                             </div>
-                                            <h5 className="font-bold text-lg mt-2">{data.name}</h5>
-                                            <p className="text-sm">{data.description}</p>
-                                            <span className="font-bold block mt-1">Rp {data.price.toLocaleString()}</span>
-                                            <div className="flex items-center space-x-3 mt-2">
-                                                <button className="bg-red-500 px-2 py-1 rounded-md text-white" onClick={(e) => { e.preventDefault(); updateQty(data.id, false); }} disabled={orderQty[data.id] <= 0}>-</button>
-                                                <span className="text-lg text-primary">{orderQty[data.id] || 0}</span>
-                                                <button className="bg-green-500 px-2 py-1 rounded-md text-white" onClick={(e) => { e.preventDefault(); updateQty(data.id, true); }}>+</button>
-                                            </div>
-                                        </div>
-                                    ))
+                                        );
+                                    })
                                 )}
 
                                 {selectedOrderIds.length > 0 && (
@@ -261,7 +274,6 @@ const OrderPage = () => {
                                         <InputGroupComponent id="customer" type="text" value={orderForm.customer} onChange={(val) => setOrderForm({ ...orderForm, customer: val })} required label="Customer" className="text-black" />
                                         <InputGroupComponent id="table_number" type="text" value={orderForm.table_number} onChange={(val) => setOrderForm({ ...orderForm, table_number: val })} required label="Table" className="text-black" />
                                         <CardSelect value={orderForm.payment_method} onChange={(val) => setOrderForm({ ...orderForm, payment_method: val })} label="Payment Method" required options={[{ value: "CASH", label: "CASH" }, { value: "QRIS", label: "QRIS" }]} />
-                                        <CardSelect value={orderForm.status} onChange={(val) => setOrderForm({ ...orderForm, status: val })} label="Status" required options={[{ value: "NEW", label: "NEW" }, { value: "PAID", label: "PAID" }, { value: "DONE", label: "DONE" }]} />
                                         <TextGroupComponent id="order-note" value={orderNote} onChange={(val) => setOrderNote(val)} label="Order Note" className="text-black" type="text" />
 
                                         <div className="mt-6 bg-gray-700 p-4 rounded-lg text-white">
