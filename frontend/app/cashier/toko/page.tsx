@@ -15,6 +15,7 @@ import { InputGroupComponent, TextGroupComponent } from "@/components/InputCompo
 import CardSelect from "@/components/card";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { FaTrashAlt } from "react-icons/fa";
+import { CiSquareMinus, CiSquarePlus } from "react-icons/ci";
 
 const OrderPage = () => {
     const searchParams = useSearchParams();
@@ -258,9 +259,9 @@ const OrderPage = () => {
                                                     </div>
                                                     <h5 className="font-bold text-base mt-2">{data.name}</h5>
                                                     <div className="flex items-center space-x-3 mt-2">
-                                                        <button className="bg-red-500 px-2 py-1 rounded-md text-white" onClick={(e) => { e.preventDefault(); updateQty(data.id, false); }} disabled={orderQty[data.id] <= 0}>-</button>
-                                                        <span className="text-lg text-primary">{orderQty[data.id] || 0}</span>
-                                                        <button className="bg-green-500 px-2 py-1 rounded-md text-white" onClick={(e) => { e.preventDefault(); updateQty(data.id, true); }}>+</button>
+                                                        <button className="text-gray-500 text-3xl cursor-pointer" onClick={(e) => { e.preventDefault(); updateQty(data.id, false); }} disabled={orderQty[data.id] <= 0}><CiSquareMinus /></button>
+                                                        <span className="text-lg text-gray-900">{orderQty[data.id] || 0}</span>
+                                                        <button className="text-gray-500 text-3xl cursor-pointer" onClick={(e) => { e.preventDefault(); updateQty(data.id, true); }}><CiSquarePlus /></button>
                                                     </div>
                                                     <span className="font-bold block mt-1">Rp {(qty * data.price).toLocaleString()}</span>
                                                 </div>
