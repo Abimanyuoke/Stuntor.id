@@ -16,6 +16,7 @@ import CardSelect from "@/components/card";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { FaTrashAlt } from "react-icons/fa";
 import { CiSquareMinus, CiSquarePlus } from "react-icons/ci";
+import Search from "./search";
 
 const OrderPage = () => {
     const searchParams = useSearchParams();
@@ -165,16 +166,16 @@ const OrderPage = () => {
 
             const data = await response.json();
             if (data.status) {
-                toast(data.message, { containerId: "toastOrder", hideProgressBar:true, type: "success" });
+                toast(data.message, { containerId: "toastOrder", hideProgressBar: true, type: "success" });
                 setTimeout(() => {
                     resetOrderState();
                     router.refresh();
                 });
             } else {
-                toast(data.message, { containerId: "toastOrder", hideProgressBar:true, type: "warning" });
+                toast(data.message, { containerId: "toastOrder", hideProgressBar: true, type: "warning" });
             }
         } catch (error) {
-            toast("Something went wrong", { containerId: "toastOrder", hideProgressBar:true, type: "error" });
+            toast("Something went wrong", { containerId: "toastOrder", hideProgressBar: true, type: "error" });
         }
     };
 
@@ -189,8 +190,9 @@ const OrderPage = () => {
             <ToastContainer containerId="toastOrder" />
             <div className="sticky top-4 z-50 flex justify-end pr-10 pt-4">
                 <button onClick={() => setOrder(true)}>
-                    <div className="bg-black w-9 h-9 flex items-center justify-center rounded-full relative">
+                    <div className="bg-black py-1 px-2 flex items-center justify-center rounded-md relative">
                         <TiShoppingCart className="text-2xl text-white" />
+                        <p className="text-white font-semibold text-lg">Cart</p>
                     </div>
                     {selectedOrderIds.length > 0 && (
                         <span className="absolute top-2 right-8 bg-red-600 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
@@ -204,6 +206,9 @@ const OrderPage = () => {
                 <div className="flex flex-col my-10 px-10">
                     <h4 className="text-xl font-bold text-slate-900">Menu Yang Tersedia</h4>
                     <p className="mb-2">Silakan pilih menu yang ingin dipesan.</p>
+                    <div className="flex items-center w-full max-w-md flex-grow">
+                        <Search url={`/cashier/toko`} search={search} />
+                    </div>
                 </div>
 
                 {loading ? (

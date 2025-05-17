@@ -1,14 +1,13 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+// soruce code from openrouter.ai
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed' });
-    }
+import { NextRequest, NextResponse } from 'next/server';
 
-    const { messages } = req.body;
+export async function POST(req: NextRequest) {
+    const body = await req.json();
+    const { messages } = body;
 
-    if (!messages) {
-        return res.status(400).json({ error: "'messages' is required in the request body" });
+    if (!messages || !Array.isArray(messages)) {
+        return NextResponse.json({ error: "'messages' array is required" }, { status: 400 });
     }
 
     try {
@@ -17,9 +16,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             headers: {
                 Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
                 'Content-Type': 'application/json',
+                'HTTP-Referer': 'http://localhost:3000',
+                'X-Title': 'MyAIChatApp',
             },
             body: JSON.stringify({
-                model: 'mistralai/mistral-7b-instruct', // model gratis
+                model: '//', // rek ini bisa diganti model lain sesuai kebutuhan di openrouter
                 messages,
             }),
         });
@@ -27,11 +28,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const data = await response.json();
 
         if (data.error) {
-            return res.status(500).json({ error: data.error.message });
+            return NextResponse.json({ error: data.error.message }, { status: 500 });
         }
 
-        res.status(200).json({ response: data.choices[0].message.content });
+        return NextResponse.json({ response: data.choices[0].message.content });
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
     }
 }
