@@ -18,6 +18,44 @@ const HomePage = () => {
     const search = searchParams.get("search") || "";
     const [menu, setMenu] = useState<IMenu[]>([]);
 
+    useEffect(() => {
+        // Disable klik kanan
+        const handleContextMenu = (e: MouseEvent) => e.preventDefault();
+        document.addEventListener("contextmenu", handleContextMenu);
+
+        // Disable drag gambar
+        const handleDragStart = (e: DragEvent) => e.preventDefault();
+        document.addEventListener("dragstart", handleDragStart);
+
+        // Disable seleksi teks
+        document.body.style.userSelect = "none";
+
+        return () => {
+            document.removeEventListener("contextmenu", handleContextMenu);
+            document.removeEventListener("dragstart", handleDragStart);
+            document.body.style.userSelect = "auto";
+        };
+    }, []);
+
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (
+                (e.ctrlKey && e.key === "u") || // View source
+                (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i") || // DevTools
+                (e.ctrlKey && e.key === "s") || // Save page
+                (e.key === "F12") // DevTools
+            ) {
+                e.preventDefault();
+            }
+        };
+
+        document.addEventListener("keydown", handleKeyDown);
+        return () => document.removeEventListener("keydown", handleKeyDown);
+    }, []);
+
+
+
     const NextArrow = ({ onClick }: { onClick?: React.MouseEventHandler<HTMLDivElement> }) => {
         return (
             <div
