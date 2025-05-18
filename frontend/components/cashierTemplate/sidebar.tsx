@@ -61,12 +61,12 @@ const Sidebar = ({ children, id, title, menuList }: CahsierProp) => {
                 <div className="flex gap-2">
                     <button onClick={() => setIsShow(true)}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-black">
+                            strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-white">
                             <path strokeLinecap="round" strokeLinejoin="round"
                                 d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
                         </svg>
                     </button>
-                    <h1 className="font-bold text-xl text-black">{title}</h1>
+                    <h1 className="font-bold text-xl text-white">{title}</h1>
                 </div>
 
                 <div className="text-white p-3 flex gap-2 items-center">

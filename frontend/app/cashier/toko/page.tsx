@@ -280,11 +280,11 @@ const OrderPage = () => {
                                 {selectedOrderIds.length > 0 && (
                                     <>
                                         <InputGroupComponent id="customer" type="text" value={orderForm.customer} onChange={(val) => setOrderForm({ ...orderForm, customer: val })} required label="Customer" className="text-black" />
-                                        <InputGroupComponent id="table_number" type="text" value={orderForm.table_number} onChange={(val) => setOrderForm({ ...orderForm, table_number: val })} required label="Table" className="text-black" />
+                                        <InputGroupComponent id="table_number" type="text" value={orderForm.table_number} onChange={(val) => setOrderForm({ ...orderForm, table_number: val })} required label="Address" className="text-black" />
                                         <CardSelect value={orderForm.payment_method} onChange={(val) => setOrderForm({ ...orderForm, payment_method: val })} label="Payment Method" required options={[{ value: "CASH", label: "CASH" }, { value: "QRIS", label: "QRIS" }]} />
                                         <TextGroupComponent id="order-note" value={orderNote} onChange={(val) => setOrderNote(val)} label="Order Note" className="text-black" type="text" />
 
-                                        <div className="mt-6 bg-gray-700 p-4 rounded-lg text-white">
+                                        <div className="mt-6 rounded-lg text-gray-700">
                                             <h4 className="text-lg font-bold">Transaction Details</h4>
                                             <ul className="text-sm">
                                                 {selectedOrderIds.map((orderId) => {
