@@ -10,23 +10,45 @@ import { get } from "@/lib/bridge";
 import { ButtonPrimary } from "@/components/button";
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 const HomePage = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const search = searchParams.get("search") || "";
-
     const [menu, setMenu] = useState<IMenu[]>([]);
+
+    const NextArrow = ({ onClick }: { onClick?: React.MouseEventHandler<HTMLDivElement> }) => {
+        return (
+            <div
+                className="absolute -right-10 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer text-gray-400 text-5xl p-2"
+                onClick={onClick}
+            >
+                <IoIosArrowForward />
+            </div>
+        );
+    };
+    const PrevArrow = ({ onClick }: { onClick?: React.MouseEventHandler<HTMLDivElement> }) => {
+        return (
+            <div
+                className="absolute -left-10 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer text-gray-400 text-5xl p-2"
+                onClick={onClick}>
+                <IoIosArrowBack />
+            </div>
+        );
+    };
 
     const settings = {
         dots: true,
         infinite: true,
         slidesToShow: 4,
         slidesToScroll: 1,
-        // autoplay: true,
-        // speed: 1000,
-        // autoplaySpeed: 2000,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        speed: 200,
         cssEase: "linear",
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
         responsive: [
             {
                 breakpoint: 1024,
@@ -61,7 +83,7 @@ const HomePage = () => {
     }, [search]);
 
     return (
-        <div className='w-full min-h-screen'>
+        <div className='w-full overflow-x-hidden'>
             {/* Hero */}
             <div className='relative w-full h-[670px]'>
                 <div className='absolute inset-0'>
@@ -90,14 +112,14 @@ const HomePage = () => {
 
             {/* Barang */}
             <div className='py-10'>
-                <div className='flex justify-center items-center'>
-                    <h1 className='text-2xl font-bold'>Barang</h1>
+                <div className='flex justify-start items-center px-33'>
+                    <h1 className='text-4xl font-bold'>Persediaan Terbaru</h1>
                 </div>
-                <div className='mt-6 px-6'>
+                <div className='mt-6 px-24'>
                     <Slider {...settings}>
                         {menu.map((data) => (
                             <div key={data.id} className="p-4">
-                                <div className="bg-primary text-white rounded-lg overflow-hidden shadow-md flex flex-col h-[460px] w-[300px] mx-auto">
+                                <div className="bg-primary text-white rounded-lg overflow-hidden shadow-md flex flex-col h-[400px] w-[260px] mx-auto">
                                     <Image
                                         width={300}
                                         height={200}
@@ -107,7 +129,7 @@ const HomePage = () => {
                                         unoptimized
                                     />
                                     <div className="flex flex-col justify-between flex-1 p-4">
-                                        <div>
+                                        <div className='text-center'>
                                             <h5 className="font-bold text-xl mb-2">{data.name}</h5>
                                             <p className="text-sm line-clamp-3">{data.description}</p>
                                         </div>
