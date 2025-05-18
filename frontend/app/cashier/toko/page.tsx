@@ -219,13 +219,15 @@ const OrderPage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center gap-4 my-10">
                         {menu.map((data) => (
                             <div key={data.id} className="p-4 rounded-lg flex flex-col items-center text-center">
-                                <Image width={300} height={300} src={`${BASE_IMAGE_MENU}/${data.picture}`} className="shadow-2xl" alt="preview" unoptimized />
-                                <div className="flex flex-col text-white items-center bg-primary rounded-b-md py-5 w-[300px] h-70 relative">
-                                    <h5 className="font-bold text-xl px-4">{data.name}</h5>
-                                    <p className="text-xs">{data.description}</p>
-                                    <span className="font-bold">Rp {data.price.toLocaleString()}</span>
-                                    <div className="mt-2 absolute bottom-27">{category(data.category)}</div>
-                                    <div className="flex flex-col absolute bottom-10 mt-3">
+                                <div className="bg-primary text-white rounded-lg overflow-hidden shadow-md flex flex-col h-[460px] w-[300px] mx-auto">
+                                    <Image width={300} height={300} src={`${BASE_IMAGE_MENU}/${data.picture}`} className="shadow-2xl object-cover bg-white w-full h-[200px] rounded-t-lg" alt="preview" unoptimized />
+                                    <div className="flex flex-col justify-between flex-1 p-4">
+                                        <div className="space-y-1">
+                                            <h5 className="font-bold text-xl px-4">{data.name}</h5>
+                                            <p className="text-xs">{data.description}</p>
+                                            <span className="font-bold">Rp {data.price.toLocaleString()}</span>
+                                            <div className="mt-2">{category(data.category)}</div>
+                                        </div>
                                         <ButtonPrimary type="button" onClick={() => handleAddToCart(data.id)}>
                                             Tambahkan Keranjang
                                         </ButtonPrimary>

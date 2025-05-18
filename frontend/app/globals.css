@@ -29,3 +29,7 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+ul.slick-dots li button {
+  display: none;
+}

@@ -37,7 +37,7 @@ export const ButtonDanger = ({ children, type, onClick, className }: Props) => {
 
 export const ButtonPrimary = ({ children, type, onClick, className }: Props) => {
     return (
-        <button className={`text-sm border-2 border-green-700 text-green-500 rounded-md py-2 px-4 bg-white font-bold hover:bg-green-600 hover:text-white transition-all duration-300 ml-2 ${className}`}
+        <button className={`text-sm border-2 border-green-700 text-green-500 rounded-md py-2 px-4 bg-white font-bold hover:bg-green-600 hover:text-white transition-all duration-300 ${className}`}
             type={type} onClick={() => { if (onClick) onClick() }}>
             {children}
         </button>
