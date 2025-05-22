@@ -6,11 +6,11 @@ import { post } from "@/lib/bridge"
 import { getCookies } from "@/lib/client-cookies"
 import { useRouter } from "next/navigation"
 import { FormEvent, useRef, useState } from "react"
-import { toast, ToastContainer } from "react-toastify"
 import { InputGroupComponent } from "@/components/InputComponent"
 import FileInput from "@/components/fileInput"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
+import { toast } from "sonner"
 
 const SignUp = () => {
     const [user, setUser] = useState<IUser>({
@@ -37,16 +37,16 @@ const SignUp = () => {
             const data = response as { status: boolean; message: string }
 
             if (data.status) {
-                toast.success(data.message, { hideProgressBar: true, containerId: `toastUser` })
+                toast.success(data.message)
                 setTimeout(() => {
                     router.replace(`/login`)
                 }, 1000)
             } else {
-                toast.warning(data.message, { hideProgressBar: true, containerId: `toastUser` })
+                toast.warning(data.message)
             }
         } catch (error) {
             console.error(error)
-            toast.error(`Something went wrong`, { hideProgressBar: true, containerId: `toastUser` })
+            toast.error(`Something went wrong`)
         }
     }
 
@@ -61,7 +61,6 @@ const SignUp = () => {
                     <span>Kembali</span>
                 </button>
             </div>
-            <ToastContainer containerId={`toastUser`} />
             <div className="max-w-7xl lg:w-full h-full flex mx-auto justify-between items-center">
                 <div className="flex flex-col lg:w-1/2 p-5 justify-center lg:p-0 items-start gap-4">
                     <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight">Ayo Cegah <span className="text-[#62C44A]">Stunting Pada Anak - anak</span></h1>
